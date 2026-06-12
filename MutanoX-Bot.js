@@ -32,8 +32,7 @@ const totalfitur = () => {
     return numCases;
 };
 
-const { default: makeWASocket, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, makeCacheableSignalKeyStore, getContentType, downloadContentFromMessage, generateWAMessageFromContent, proto, generateWAMessage, prepareWAMessageMedia, areJidsSameUser } = require('@whiskeysockets/baileys')
-const { getDevice } = require("@whiskeysockets/baileys")
+const { default: makeWASocket, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, makeCacheableSignalKeyStore, getContentType, downloadContentFromMessage, generateWAMessageFromContent, proto, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getDevice } = require('@whiskeysockets/baileys')
 
 const { LoadDataBase } = require('./source/message')
 const contacts = JSON.parse(fs.readFileSync("./library/database/contacts.json"))
@@ -42,7 +41,6 @@ const premium = JSON.parse(fs.readFileSync("./library/database/premium.json"))
 const list = JSON.parse(fs.readFileSync("./library/database/list.json"))
 const { pinterest, pinterest2, remini, mediafire, tiktokDl } = require('./library/scraper');
 const { toAudio, toPTT, toVideo, ffmpeg } = require("./library/converter.js")
-const { getDevice } = require("@whiskeysockets/baileys")
 const { unixTimestampSeconds, generateMessageTag, processTime, webApi, getRandom, getBuffer, fetchJson, runtime, clockString, sleep, isUrl, getTime, formatDate, tanggal, formatp, jsonformat, reSize, toHD, logic, generateProfilePicture, bytesToSize, checkBandwidth, getSizeMedia, parseMention, getGroupAdmins, readFileTxt, readFileJson, getHashedPassword, generateAuthToken, cekMenfes, generateToken, batasiTeks, randomText, isEmoji, getTypeUrlMedia, pickRandom, toIDR, capital } = require('./library/function');
 const { targetChannelData, loadTargetChannel, saveTargetChannel } = require('./library/upch.js');
 const { UploadFileUgu } = require('./library/uploader.js')
