@@ -24,7 +24,7 @@ const {
   DisconnectReason,
   makeInMemoryStore,
   makeCacheableSignalKeyStore,
-  fetchLatestBaileysVersion,
+  fetchLatestWaWebVersion,
   proto,
   PHONENUMBER_MCC,
   getAggregateVotesInPollMessage
@@ -149,7 +149,7 @@ const botConfig = {
   useMultiFileAuthState(...args) { return useMultiFileAuthState(...args); },
   makeWASocket(...args) { return makeWASocket(...args); },
   makeCacheableSignalKeyStore(...args) { return makeCacheableSignalKeyStore(...args); },
-  fetchLatestBaileysVersion(...args) { return fetchLatestBaileysVersion(...args); },
+  fetchLatestWaWebVersion(...args) { return fetchLatestWaWebVersion(...args); },
   exec(...args) { return exec(...args); },
   antiDeleteHandler(...args) { return antiDeleteHandler(...args); },
   connectionHandler(...args) { return connectionHandler(...args); },

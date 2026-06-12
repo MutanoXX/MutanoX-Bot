@@ -32,8 +32,7 @@ const totalfitur = () => {
     return numCases;
 };
 
-const { default: makeWASocket, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, makeCacheableSignalKeyStore, getContentType, downloadContentFromMessage, generateWAMessageFromContent, proto, generateWAMessage, prepareWAMessageMedia, areJidsSameUser } = require('@whiskeysockets/baileys')
-const { getDevice } = require("@whiskeysockets/baileys")
+const { default: WAConnection, BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, getBinaryNodeChildren, useMultiFileAuthState, generateWAMessageContent, downloadContentFromMessage, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@whiskeysockets/baileys')
 
 const { LoadDataBase } = require('./source/message')
 const contacts = JSON.parse(fs.readFileSync("./library/database/contacts.json"))
@@ -7683,7 +7682,7 @@ break;
   Reply('proses...');
   let [peenis, pepekk = "200"] = text.split("|");
   let target = peenis.replace(/[^0-9]/g, '').trim();
-  const { default: makeWASocket, useMultiFileAuthState, fetchLatestBaileysVersion } = require('@whiskeysockets/baileys');
+  const { default: makeWaSocket, useMultiFileAuthState, fetchLatestBaileysVersion } = require('@whiskeysockets/baileys');
   const { state } = await useMultiFileAuthState('pepek');
   const { version } = await fetchLatestBaileysVersion();
   const pino = require("pino");
