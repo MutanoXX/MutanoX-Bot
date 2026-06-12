@@ -141,7 +141,7 @@ async function startBot() {
       creds: state.creds,
       keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" }))
     },
-    browser: Browsers.appropriate("Chrome"),
+    browser: typeof Browsers?.appropriate === 'function' ? Browsers.appropriate("Chrome") : ["Ubuntu", "Chrome", "6.1.158+"],
     getMessage: async (key) => {
       if (store) {
         const msg = await store.loadMessage(key.remoteJid, key.id);
