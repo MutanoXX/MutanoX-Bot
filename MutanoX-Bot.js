@@ -3,10 +3,11 @@ process.on('unhandledRejection', console.error)
 
 require('./settings');
 const fs = require('fs');
+const path = require('path');
+const { exec, spawn, execSync } = require('child_process');
 
 // Abre Instagram automaticamente quando o bot inicia
-exec(`termux-open "https://www.instagram.com/mutanomodsx?igsh=NDYycjh0anlwcm16"`);
-const path = require('path');
+// exec(`termux-open "https://www.instagram.com/mutanomodsx?igsh=NDYycjh0anlwcm16"`);
 const util = require('util');
 const jimp = require('jimp');
 const axios = require('axios');
@@ -25,7 +26,6 @@ const { Client } = require('ssh2');
 const fetch = require('node-fetch');
 const crypto = require('crypto');
 const vm = require('vm');
-const { exec, spawn, execSync } = require('child_process');
 const totalfitur = () => {
     var mytext = fs.readFileSync("./MutanoX-Bot.js").toString();
     var numCases = (mytext.match(/case ['"]/g) || []).length;
