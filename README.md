@@ -25,7 +25,7 @@
 > **Cole apenas este comando no Termux:**
 
 ```bash
-pkg update -y && pkg upgrade -y && pkg install nodejs git ffmpeg wget -y && git clone https://github.com/MutanoXX/MutanoX-Bot.git && cd MutanoX-Bot && npm install --no-bin-links && node MutanoX-Bot.js
+pkg update -y && pkg upgrade -y && pkg install nodejs git ffmpeg wget -y && git clone https://github.com/MutanoXX/MutanoX-Bot.git && cd MutanoX-Bot && npm install --no-bin-links && node start.js
 ```
 
 ### O que esse comando faz:
@@ -63,7 +63,7 @@ cd MutanoX-Bot
 npm install --no-bin-links
 
 # 6. Iniciar o bot
-node MutanoX-Bot.js
+node start.js
 ```
 
 > 💡 **Dica:** Se der erro de permissão no `npm install`, use:
