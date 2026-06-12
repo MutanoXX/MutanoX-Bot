@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/boom": "^10.0.0",
-    "@whiskeysockets/baileys": "^6.6.0",
+    "@whiskeysockets/baileys": "^6.17.16",
     "awesome-phonenumber": "^4.4.0",
     "axios": "^0.24.0",
     "canvafy": "^7.2.0",
