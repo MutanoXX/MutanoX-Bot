@@ -1,0 +1,5 @@
+node_modules/
+auth/
+package-lock.json
+targetChannel.json
+library/database/sampah/
