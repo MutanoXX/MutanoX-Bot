@@ -1,6 +1,13 @@
 /*
   MutanoX Script - WhatsApp Bot
   Fixed start.js with proper pairing code and connection handling
+  
+  Correções:
+  - Browser fingerprint realista (Windows/Chrome) para evitar status 405
+  - countryCode configurado como BR para notificação de pairing code
+  - Pairing code solicitado imediatamente (sem delay)
+  - PHONENUMBER_MCC removido (não existe mais no Baileys)
+  - Import MessagesUpsert corrigido (capitalização)
 */
 
 require("./settings");
@@ -134,6 +141,25 @@ async function startBot() {
   // Format: [OS Name, Browser Name, Browser Version]
   const browser = ["Windows", "Chrome", "131.0.6778.139"];
 
+  // Detect country code from phone number for proper WhatsApp pairing
+  // This is CRITICAL for the push notification to arrive on the phone
+  const countryCodeMap = {
+    '55': 'BR', '1': 'US', '44': 'GB', '351': 'PT', '34': 'ES',
+    '54': 'AR', '56': 'CL', '57': 'CO', '51': 'PE', '52': 'MX',
+    '62': 'ID', '91': 'IN', '81': 'JP', '86': 'CN', '49': 'DE',
+    '33': 'FR', '39': 'IT', '7': 'RU', '27': 'ZA', '234': 'NG',
+  };
+  let detectedCountry = 'BR'; // default Brasil
+  // Match longest prefix first (e.g., 351 before 3)
+  const sortedCodes = Object.keys(countryCodeMap).sort((a, b) => b.length - a.length);
+  for (const code of sortedCodes) {
+    if (phoneNumber && phoneNumber.startsWith(code)) {
+      detectedCountry = countryCodeMap[code];
+      break;
+    }
+  }
+  console.log(chalk.gray(`País detectado: ${detectedCountry}`));
+
   const sock = makeWASocket({
     logger: pino({ level: "silent" }),
     printQRInTerminal: !usePairingCode,
@@ -143,6 +169,7 @@ async function startBot() {
     },
     browser: browser,
     version: version,
+    countryCode: detectedCountry,
     defaultQueryTimeoutMs: 60000,
     keepAliveIntervalMs: 25000,
     connectTimeoutMs: 60000,
@@ -177,9 +204,14 @@ async function startBot() {
           const pairingCode = await sock.requestPairingCode(phoneNumber);
           console.log(chalk.green("\n═══════════════════════════════════════════"));
           console.log(chalk.green(`  🔑 Seu Pairing Code: ${pairingCode}`));
-          console.log(chalk.green("  Abra o WhatsApp → Aparelhos conectados → Conectar"));
-          console.log(chalk.green("  Digite o código acima."));
-          console.log(chalk.green("═══════════════════════════════════════════\n"));
+          console.log(chalk.green("═══════════════════════════════════════════"));
+          console.log(chalk.cyan("\n📱 COMO CONECTAR:"));
+          console.log(chalk.cyan("  1. Você vai receber uma NOTIFICAÇÃO no WhatsApp do celular"));
+          console.log(chalk.cyan("  2. Toque na notificação (ou abra WhatsApp → Aparelhos conectados → Conectar)"));
+          console.log(chalk.cyan(`  3. Digite o código: ${pairingCode}`));
+          console.log(chalk.yellow("\n  ⚠️  Se NÃO recebeu a notificação:"));
+          console.log(chalk.yellow("  Abra o WhatsApp → Configurações → Aparelhos conectados → Conectar"));
+          console.log(chalk.yellow("  E digite o código manualmente.\n"));
         } catch (err) {
           console.log(chalk.red("❌ Erro ao solicitar pairing code:"), err.message);
           console.log(chalk.yellow("Tentando novamente em 2 segundos..."));
@@ -189,9 +221,9 @@ async function startBot() {
               const pairingCode = await sock.requestPairingCode(phoneNumber);
               console.log(chalk.green("\n═══════════════════════════════════════════"));
               console.log(chalk.green(`  🔑 Seu Pairing Code: ${pairingCode}`));
-              console.log(chalk.green("  Abra o WhatsApp → Aparelhos conectados → Conectar"));
-              console.log(chalk.green("  Digite o código acima."));
-              console.log(chalk.green("═══════════════════════════════════════════\n"));
+              console.log(chalk.green("═══════════════════════════════════════════"));
+              console.log(chalk.cyan("\n📱 Toque na notificação do WhatsApp ou vá em:"));
+              console.log(chalk.cyan("  Aparelhos conectados → Conectar e digite o código.\n"));
             } catch (retryErr) {
               console.log(chalk.red("❌ Falha na segunda tentativa:"), retryErr.message);
             }
