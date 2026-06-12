@@ -14,7 +14,7 @@
 
 ## 📋 Requisitos
 
-- ✅ Termux (Android)
+- ✅ Termux (Android) ou Node.js 18+ (PC/VPS)
 - ✅ Conexão com internet estável
 - ✅ Armazenamento com permissão concedida
 
@@ -25,7 +25,7 @@
 > **Cole apenas este comando no Termux:**
 
 ```bash
-pkg update -y && pkg upgrade -y && pkg install nodejs git ffmpeg wget -y && git clone https://github.com/MutanoXX/MutanoX-Bot.git && cd MutanoX-Bot && npm install --no-bin-links && node start.js
+pkg update -y && pkg upgrade -y && pkg install nodejs git ffmpeg wget -y && git clone https://github.com/MutanoXX/MutanoX-Bot.git && cd MutanoX-Bot && npm install --legacy-peer-deps && node start.js
 ```
 
 ### O que esse comando faz:
@@ -60,18 +60,74 @@ git clone https://github.com/MutanoXX/MutanoX-Bot.git
 cd MutanoX-Bot
 
 # 5. Instalar dependências
-npm install --no-bin-links
+npm install --legacy-peer-deps
 
 # 6. Iniciar o bot
 node start.js
 ```
 
-> 💡 **Dica:** Se der erro de permissão no `npm install`, use:
-> ```bash
-> npm install --no-bin-links
-> ```
+> ⚠️ **Importante:** Use `--legacy-peer-deps` para evitar conflitos de dependência entre o Baileys e o Jimp.
 
 </details>
+
+---
+
+## 🔄 Atualização (Se você já tinha o bot instalado)
+
+Se você já tinha uma versão anterior do MutanoX-Bot e está atualizando:
+
+```bash
+# Entre na pasta do bot
+cd MutanoX-Bot
+
+# Puxe as atualizações do GitHub
+git pull origin main
+
+# Reinstale as dependências (necessário porque o Baileys foi atualizado!)
+npm install --legacy-peer-deps
+
+# Delete a pasta auth antiga (sessão antiga pode estar corrompida)
+rm -rf auth
+
+# Inicie o bot novamente
+node start.js
+```
+
+> ❗ **OBRIGATÓRIO:** Rode `npm install --legacy-peer-deps` depois de dar `git pull`!
+> A versão do Baileys foi atualizada de `6.6.0` para `6.17.16`, e sem reinstalar as dependências o bot **não vai funcionar**.
+
+---
+
+## 📱 Como Conectar via Pairing Code
+
+Na primeira vez que rodar o bot, ele vai pedir seu número de telefone:
+
+```
+═══════════════════════════════════════════
+  Nenhuma sessão encontrada.
+  Você precisa conectar o bot ao WhatsApp.
+═══════════════════════════════════════════
+
+📱 Digite seu número do WhatsApp (com código do país, sem + ou espaços)
+   Exemplo: 5511999999999
+   ➤ 5565999088132
+```
+
+Depois, o **Pairing Code** vai aparecer:
+
+```
+═══════════════════════════════════════════
+  🔑 Seu Pairing Code: ABC12DEF
+  Abra o WhatsApp → Aparelhos conectados → Conectar
+  Digite o código acima.
+═══════════════════════════════════════════
+```
+
+### Passos no celular:
+1. Abra o **WhatsApp**
+2. Vá em **Aparelhos conectados**
+3. Toque em **Conectar um aparelho**
+4. Digite o código que apareceu no terminal
 
 ---
 
@@ -128,11 +184,26 @@ Edite o arquivo **`settings.js`** e configure:
 
 ---
 
+## 🔧 Changelog (v5.0 - Fix)
+
+### Correções nesta versão:
+- ✅ **Corrigido erro status 405** — O WhatsApp recusava a conexão por detectar fingerprint de bot
+- ✅ **Pairing Code agora funciona** — Antes não era gerado porque a conexão caía antes (3s de delay removido)
+- ✅ **Browser fingerprint corrigido** — Substituído `Browsers.appropriate("Chrome")` por string Chrome/Windows realista
+- ✅ **Baileys atualizado** de `6.6.0` para `6.17.16` (última versão estável)
+- ✅ **Removido PHONENUMBER_MCC** — Não existe mais no Baileys atual
+- ✅ **Import MessagesUpsert corrigido** — Capitalização estava errada
+- ✅ **Retry automático** se o pairing code falhar na primeira tentativa
+- ✅ **Timeouts aumentados** para conexão mais estável
+
+---
+
 ## ⚠️ Avisos Importantes
 
 - 🔒 O bot precisa ser **administrador** nos grupos para usar comandos de admin
 - 🚫 Não compartilhe sua pasta `auth` com ninguém
 - 🔄 Mantenha o bot sempre atualizado
+- 📱 Se o pairing code não chegar, delete a pasta `auth` e tente novamente: `rm -rf auth && node start.js`
 
 ---
 
@@ -140,7 +211,7 @@ Edite o arquivo **`settings.js`** e configure:
 
 ## 👑 Créditos
 
-**Desenvolvido por:** MutanoX  
+**Desenvolvido por:** MutanoX
 **Versão:** VIP
 
 ---
