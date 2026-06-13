@@ -94,7 +94,7 @@ node start.js
 ```
 
 > ❗ **OBRIGATÓRIO:** Rode `npm install --legacy-peer-deps` depois de dar `git pull`!
-> A versão do Baileys foi atualizada de `6.6.0` para `6.17.16`, e sem reinstalar as dependências o bot **não vai funcionar**.
+> O pacote Baileys foi trocado para `@zeppeliorg/wbails` (fork com suporte real a pairing code), e sem reinstalar as dependências o bot **não vai funcionar**.
 
 ---
 
@@ -113,21 +113,28 @@ Na primeira vez que rodar o bot, ele vai pedir seu número de telefone:
    ➤ 5565999088132
 ```
 
-Depois, o **Pairing Code** vai aparecer:
+Depois, o **Pairing Code** vai aparecer e uma **notificação vai chegar no seu celular**:
 
 ```
-═══════════════════════════════════════════
-  🔑 Seu Pairing Code: ABC12DEF
-  Abra o WhatsApp → Aparelhos conectados → Conectar
-  Digite o código acima.
-═══════════════════════════════════════════
+========================================
+  CODIGO DE PAREAMENTO: AB12-CD34
+========================================
+
+📱 COMO CONECTAR:
+  1. Abra o WhatsApp no celular
+  2. Vá em: Aparelhos conectados
+  3. Toque em: "Conectar com número de telefone"
+  4. Digite o código: AB12-CD34
+
+  ⚠️  A notificação deve aparecer no seu celular!
+  ⚠️  Digite o código RÁPIDO! Ele expira em ~60 segundos.
 ```
 
 ### Passos no celular:
-1. Abra o **WhatsApp**
-2. Vá em **Aparelhos conectados**
-3. Toque em **Conectar um aparelho**
-4. Digite o código que apareceu no terminal
+1. Você vai receber uma **notificação do WhatsApp** — toque nela
+2. Ou abra o **WhatsApp** → **Aparelhos conectados** → **Conectar com número de telefone**
+3. Digite o código que apareceu no terminal
+4. O bot vai conectar automaticamente!
 
 ---
 
@@ -184,17 +191,25 @@ Edite o arquivo **`settings.js`** e configure:
 
 ---
 
-## 🔧 Changelog (v5.0 - Fix)
+## 🔧 Changelog (v5.1 - Pairing Code Fix)
 
 ### Correções nesta versão:
+- ✅ **PAIRING CODE AGORA FUNCIONA!** — Trocado para `@zeppeliorg/wbails` (fork do Baileys com suporte real a pairing code)
+- ✅ **Notificação do WhatsApp agora aparece** — O Baileys original fechava a conexão (405) antes da notificação ser enviada
+- ✅ **Browser fingerprint corrigido** — `['Ubuntu', 'Chrome', '20.00.1']` (igual aos bots que funcionam)
+- ✅ **makeCacheableSignalKeyStore adicionado** — Obrigatório para o signal protocol handshake
+- ✅ **Removido countryCode** — O bots que funcionam NÃO usam essa opção
+- ✅ **Removido version explícito** — Deixa Baileys usar o default
+- ✅ **markOnlineOnConnect: true** — Configuração que funciona com pairing code
+- ✅ **generateHighQualityLinkPreview: true** — Igual ao bot de referência
+- ✅ **Retry automático** (3 tentativas, timeout 60s) se o pairing code falhar
+- ✅ **withTimeout wrapper** — Evita que o requestPairingCode fique travado infinitamente
+
+### Correções anteriores (v5.0):
 - ✅ **Corrigido erro status 405** — O WhatsApp recusava a conexão por detectar fingerprint de bot
-- ✅ **Pairing Code agora funciona** — Antes não era gerado porque a conexão caía antes (3s de delay removido)
-- ✅ **Browser fingerprint corrigido** — Substituído `Browsers.appropriate("Chrome")` por string Chrome/Windows realista
-- ✅ **Baileys atualizado** de `6.6.0` para `6.17.16` (última versão estável)
+- ✅ **Pairing Code agora é gerado** — Antes não era gerado porque a conexão caía antes
 - ✅ **Removido PHONENUMBER_MCC** — Não existe mais no Baileys atual
 - ✅ **Import MessagesUpsert corrigido** — Capitalização estava errada
-- ✅ **Retry automático** se o pairing code falhar na primeira tentativa
-- ✅ **Timeouts aumentados** para conexão mais estável
 
 ---
 
