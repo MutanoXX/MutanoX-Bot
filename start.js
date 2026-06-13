@@ -2,9 +2,12 @@
   MutanoX Script - WhatsApp Bot
   Fixed start.js with proper pairing code and connection handling
   
-  Correções:
-  - Browser fingerprint realista (Windows/Chrome) para evitar status 405
-  - countryCode configurado como BR para notificação de pairing code
+  Correções v3 (baseado na documentação oficial do Baileys):
+  - Browser config DEVE ser Browsers.macOS("Chrome") para pairing code funcionar
+    (docs: "you should only set a valid/logical browser config, otherwise the pair will fail")
+  - Após pareamento concluído, browser volta ao normal
+  - syncFullHistory habilitado com browser desktop para sincronização completa
+  - countryCode detectado automaticamente do número de telefone
   - Pairing code solicitado imediatamente (sem delay)
   - PHONENUMBER_MCC removido (não existe mais no Baileys)
   - Import MessagesUpsert corrigido (capitalização)
@@ -90,6 +93,24 @@ const MAX_RECONNECT_ATTEMPTS = 5;
 let phoneNumber = "";
 let pairingCodeRequested = false;
 
+// Detect country code from phone number for proper WhatsApp pairing
+function detectCountryCode(phone) {
+  const countryCodeMap = {
+    '55': 'BR', '1': 'US', '44': 'GB', '351': 'PT', '34': 'ES',
+    '54': 'AR', '56': 'CL', '57': 'CO', '51': 'PE', '52': 'MX',
+    '62': 'ID', '91': 'IN', '81': 'JP', '86': 'CN', '49': 'DE',
+    '33': 'FR', '39': 'IT', '7': 'RU', '27': 'ZA', '234': 'NG',
+  };
+  // Match longest prefix first (e.g., 351 before 3)
+  const sortedCodes = Object.keys(countryCodeMap).sort((a, b) => b.length - a.length);
+  for (const code of sortedCodes) {
+    if (phone && phone.startsWith(code)) {
+      return countryCodeMap[code];
+    }
+  }
+  return 'BR'; // default Brasil
+}
+
 // Start the bot
 async function startBot() {
   // Display banner
@@ -137,27 +158,29 @@ async function startBot() {
   // Reset pairing code flag for new connection
   pairingCodeRequested = false;
 
-  // Use a realistic browser string - Chrome on Windows is most common and reliable
-  // Format: [OS Name, Browser Name, Browser Version]
-  const browser = ["Windows", "Chrome", "131.0.6778.139"];
-
-  // Detect country code from phone number for proper WhatsApp pairing
-  // This is CRITICAL for the push notification to arrive on the phone
-  const countryCodeMap = {
-    '55': 'BR', '1': 'US', '44': 'GB', '351': 'PT', '34': 'ES',
-    '54': 'AR', '56': 'CL', '57': 'CO', '51': 'PE', '52': 'MX',
-    '62': 'ID', '91': 'IN', '81': 'JP', '86': 'CN', '49': 'DE',
-    '33': 'FR', '39': 'IT', '7': 'RU', '27': 'ZA', '234': 'NG',
-  };
-  let detectedCountry = 'BR'; // default Brasil
-  // Match longest prefix first (e.g., 351 before 3)
-  const sortedCodes = Object.keys(countryCodeMap).sort((a, b) => b.length - a.length);
-  for (const code of sortedCodes) {
-    if (phoneNumber && phoneNumber.startsWith(code)) {
-      detectedCountry = countryCodeMap[code];
-      break;
-    }
+  // ============================================================
+  // CRITICAL: Browser config para Pairing Code
+  // ============================================================
+  // Segundo a documentação oficial do Baileys:
+  // "When logging in using pairing code, you should only set a 
+  //  valid/logical browser config (e.g. Browsers.macOS("Chrome")),
+  //  otherwise the pair will fail."
+  //
+  // Após pareamento concluído, pode trocar de volta ao normal.
+  // ============================================================
+  let browser;
+  if (!hasExistingAuth) {
+    // Primeira conexão (pairing code): usar browser CANÔNICO do Baileys
+    browser = Browsers.macOS("Chrome");
+    console.log(chalk.gray("Browser: macOS Chrome (modo pairing)"));
+  } else {
+    // Sessão já existe: usar browser desktop para sync completo
+    browser = Browsers.windows("Chrome");
+    console.log(chalk.gray("Browser: Windows Chrome (modo reconexão)"));
   }
+
+  // Detect country code
+  const detectedCountry = detectCountryCode(phoneNumber);
   console.log(chalk.gray(`País detectado: ${detectedCountry}`));
 
   const sock = makeWASocket({
@@ -170,9 +193,11 @@ async function startBot() {
     browser: browser,
     version: version,
     countryCode: detectedCountry,
+    syncFullHistory: hasExistingAuth, // sync full history only on reconnects
     defaultQueryTimeoutMs: 60000,
     keepAliveIntervalMs: 25000,
     connectTimeoutMs: 60000,
+    markOnlineOnConnect: false, // não marca online automaticamente (evita perder notificações)
     getMessage: async (key) => {
       if (store) {
         const msg = await store.loadMessage(key.remoteJid, key.id);
@@ -206,12 +231,13 @@ async function startBot() {
           console.log(chalk.green(`  🔑 Seu Pairing Code: ${pairingCode}`));
           console.log(chalk.green("═══════════════════════════════════════════"));
           console.log(chalk.cyan("\n📱 COMO CONECTAR:"));
-          console.log(chalk.cyan("  1. Você vai receber uma NOTIFICAÇÃO no WhatsApp do celular"));
-          console.log(chalk.cyan("  2. Toque na notificação (ou abra WhatsApp → Aparelhos conectados → Conectar)"));
-          console.log(chalk.cyan(`  3. Digite o código: ${pairingCode}`));
-          console.log(chalk.yellow("\n  ⚠️  Se NÃO recebeu a notificação:"));
-          console.log(chalk.yellow("  Abra o WhatsApp → Configurações → Aparelhos conectados → Conectar"));
-          console.log(chalk.yellow("  E digite o código manualmente.\n"));
+          console.log(chalk.cyan("  1. Abra o WhatsApp no celular"));
+          console.log(chalk.cyan("  2. Vá em: Configurações → Aparelhos conectados → Conectar"));
+          console.log(chalk.cyan("  3. Selecione: \"Conectar com número de telefone\""));
+          console.log(chalk.cyan(`  4. Digite o código: ${pairingCode}`));
+          console.log(chalk.yellow("\n  ⚠️  DICA: O código expira rápido! Digite em até 60 segundos."));
+          console.log(chalk.yellow("  Se não funcionar, delete a pasta 'auth' e tente novamente:\n"));
+          console.log(chalk.gray("  rm -rf auth && node start.js\n"));
         } catch (err) {
           console.log(chalk.red("❌ Erro ao solicitar pairing code:"), err.message);
           console.log(chalk.yellow("Tentando novamente em 2 segundos..."));
@@ -222,8 +248,7 @@ async function startBot() {
               console.log(chalk.green("\n═══════════════════════════════════════════"));
               console.log(chalk.green(`  🔑 Seu Pairing Code: ${pairingCode}`));
               console.log(chalk.green("═══════════════════════════════════════════"));
-              console.log(chalk.cyan("\n📱 Toque na notificação do WhatsApp ou vá em:"));
-              console.log(chalk.cyan("  Aparelhos conectados → Conectar e digite o código.\n"));
+              console.log(chalk.cyan("\n📱 Vá em: Configurações → Aparelhos conectados → Conectar com número\n"));
             } catch (retryErr) {
               console.log(chalk.red("❌ Falha na segunda tentativa:"), retryErr.message);
             }
@@ -247,6 +272,13 @@ async function startBot() {
 
       if (shouldReconnect) {
         reconnectAttempts++;
+
+        // 515 = restartRequired (normal após pairing)
+        if (statusCode === 515) {
+          console.log(chalk.cyan("🔄 Restart required (normal após pareamento)..."));
+          setTimeout(() => startBot(), 2000);
+          return;
+        }
 
         if (reconnectAttempts > MAX_RECONNECT_ATTEMPTS) {
           console.log(
