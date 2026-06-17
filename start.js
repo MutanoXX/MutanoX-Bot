@@ -123,27 +123,44 @@ const {
 
 // Initialize database
 (async () => {
-  const dbInstance = new DataBase();
-  const dbData = await dbInstance.read();
-  if (dbData && Object.keys(dbData).length === 0) {
+  try {
+    const dbInstance = new DataBase();
+    const dbData = await dbInstance.read();
+    if (dbData && Object.keys(dbData).length === 0) {
+      global.db = {
+        users: {},
+        groups: {},
+        database: {},
+        settings: {},
+        chats: {},
+        messages: {},
+        ...(dbData || {})
+      };
+      await dbInstance.write(global.db);
+    } else {
+      global.db = dbData;
+    }
+    setInterval(async () => {
+      try {
+        if (global.db) {
+          await dbInstance.write(global.db);
+        }
+      } catch (e) {
+        console.error(chalk.red("[database] Erro no write periodico:"), e?.message || e);
+      }
+    }, 3500);
+  } catch (e) {
+    console.error(chalk.red("[database] Erro ao inicializar database:"), e?.message || e);
+    console.error(chalk.yellow("[database] Continuando com database vazio..."));
     global.db = {
       users: {},
       groups: {},
       database: {},
       settings: {},
       chats: {},
-      messages: {},
-      ...(dbData || {})
+      messages: {}
     };
-    await dbInstance.write(global.db);
-  } else {
-    global.db = dbData;
   }
-  setInterval(async () => {
-    if (global.db) {
-      await dbInstance.write(global.db);
-    }
-  }, 3500);
 })();
 
 // Delete corrupted auth folder

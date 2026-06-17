@@ -69,7 +69,30 @@ if (/mongo/.test("database.json")) {
 		read = async () => {
 			let data;
 			if (fs.existsSync(this.file)) {
-				data = JSON.parse(fs.readFileSync(this.file))
+				// Le o arquivo como UTF-8. Se estiver vazio ou com JSON
+				// invalido, reseta para {} em vez de lancar SyntaxError.
+				// Isso acontece quando o bot e morto no meio de um write
+				// (ex.: SIGKILL na Termux) e o arquivo fica truncado.
+				const raw = fs.readFileSync(this.file, 'utf8');
+				if (!raw || !raw.trim()) {
+					console.warn(chalk.yellow('[database] database.json estava vazio - resetando para {}'));
+					data = {};
+					fs.writeFileSync(this.file, JSON.stringify(data, null, 2));
+				} else {
+					try {
+						data = JSON.parse(raw);
+					} catch (e) {
+						console.warn(chalk.red(`[database] database.json corrompido: ${e.message}`));
+						console.warn(chalk.yellow('[database] Fazendo backup do arquivo corrompido e resetando...'));
+						try {
+							const backupPath = this.file + '.corrupt.' + Date.now() + '.bak';
+							fs.copyFileSync(this.file, backupPath);
+							console.warn(chalk.yellow(`[database] Backup salvo em: ${backupPath}`));
+						} catch (_) {}
+						data = {};
+						fs.writeFileSync(this.file, JSON.stringify(data, null, 2));
+					}
+				}
 			} else {
 				fs.writeFileSync(this.file, JSON.stringify(this.data, null, 2))
 				data = this.data
@@ -81,7 +104,12 @@ if (/mongo/.test("database.json")) {
 			this.data = !!data ? data : global.db
 			let dirname = path.dirname(this.file)
 			if (!fs.existsSync(dirname)) fs.mkdirSync(dirname, { recursive: true })
-			fs.writeFileSync(this.file, JSON.stringify(this.data, null, 2))
+			// Write atomico: escreve em .tmp primeiro, depois renomeia.
+			// Evita corromper o database.json se o processo for morto
+			// no meio do write (causa raiz do problema relatado).
+			const tmpFile = this.file + '.tmp'
+			fs.writeFileSync(tmpFile, JSON.stringify(this.data, null, 2))
+			fs.renameSync(tmpFile, this.file)
 			return this.file
 		}
 	}
