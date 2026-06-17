@@ -11,7 +11,71 @@
   - markOnlineOnConnect: true
   - requestPairCode com sleep + withTimeout (igual ao que funciona)
   - Sem opções extras de timeout que podem interferir
+  
+  IMPORTANTE: rode com `node bootstrap.js` (em vez de `node start.js`)
+  para silenciar completamente os erros cosméticos "Connection Closed"
+  do timer interno do Baileys (newsletterWMexQuery).
 */
+
+// ============================================================
+// Camada 1: silencia warnings do Node.js sobre rejections não
+// tratadas. Mesmo com `--unhandled-rejections=none` (setado pelo
+// bootstrap.js), alguns warnings ainda podem aparecer. Esta
+// camada garante que nada relacionado a "Connection Closed"
+// seja impresso no stderr OU stdout.
+// ============================================================
+(function patchStderrFilter() {
+  const BLOCK_PATTERNS = [
+    'Connection Closed',
+    'Precondition Required',
+    'newsletterWMexQuery',
+    'UnhandledPromiseRejectionWarning',
+    'DeprecationWarning: Unhandled promise rejections',
+  ];
+  
+  function shouldBlock(chunk) {
+    const str = typeof chunk === 'string'
+      ? chunk
+      : (Buffer.isBuffer(chunk) ? chunk.toString('utf8') : '');
+    if (!str) return false;
+    return BLOCK_PATTERNS.some(pat => str.includes(pat));
+  }
+  
+  // Filtra stderr
+  const originalStderrWrite = process.stderr.write.bind(process.stderr);
+  process.stderr.write = function (chunk, encoding, callback) {
+    if (shouldBlock(chunk)) {
+      if (typeof callback === 'function') callback();
+      return true;
+    }
+    return originalStderrWrite(chunk, encoding, callback);
+  };
+  
+  // Filtra stdout (alguns handlers podem usar console.log)
+  const originalStdoutWrite = process.stdout.write.bind(process.stdout);
+  process.stdout.write = function (chunk, encoding, callback) {
+    if (shouldBlock(chunk)) {
+      if (typeof callback === 'function') callback();
+      return true;
+    }
+    return originalStdoutWrite(chunk, encoding, callback);
+  };
+})();
+
+// ============================================================
+// Camada 2: suprime evento 'warning' do Node.js para warnings
+// relacionados a unhandledRejection.
+// ============================================================
+process.on('warning', (warning) => {
+  const msg = (warning?.message || '') + ' ' + (warning?.name || '');
+  if (msg.includes('Connection Closed') ||
+      msg.includes('UnhandledPromiseRejection') ||
+      msg.includes('unhandled promise rejection')) {
+    return;  // silencia
+  }
+  // Demais warnings: imprime normalmente
+  console.warn(warning);
+});
 
 require("./settings");
 const mainFile = require("./MutanoX-Bot");
