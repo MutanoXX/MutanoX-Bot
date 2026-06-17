@@ -5228,23 +5228,32 @@ management, dan fitur lainnya.
                     },
 
                     nativeFlowMessage: {
-                        messageParamsJson: JSON.stringify({
-                            limited_time_offer: {
-                                text: "'KELPIN GV'",
-                                url: "https://t.me/hope6166",
-                                copy_code: "𝙨𝙘𝙧𝙞𝙥𝙩 𝙢𝙖𝙙𝙚 𝙗𝙮 𝙠𝙚𝙡𝙥𝙞𝙣",
-                                expiration_time: Date.now() + 86400000
-                            },
-                            bottom_sheet: {
-                                in_thread_buttons_limit: 2,
-                                divider_indices: [1,2,3,4,5,6,7,8,999],
-                                list_title: "click to see the menu",
-                                button_title: "Sellect Menu"
-                            }
-                        }),
+                        messageParamsJson: JSON.stringify({}),
 
                         buttons: [
                             {
+name: "single_select",
+buttonParamsJson: JSON.stringify({
+title: "Select Menu",
+sections: [
+{
+title: "\ud83d\udce6 Kategori Fitur",
+rows: [
+{ header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
+{ header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bugmenu` },
+{ header: "Create Panel", title: "Buat panel Pterodactyl", id: `${prefix}cpanel` },
+{ header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
+{ header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
+{ header: "Thanks To", title: "Daftar pendukung", id: `${prefix}tqto` },
+{ header: "Info / Request", title: "Kirim request fitur", id: `${prefix}request` },
+{ header: "About Developer", title: "Profil developer", id: `${prefix}developer` },
+{ header: "Back to Menu", title: "Kembali ke menu utama", id: `${prefix}menu` }
+]
+}
+]
+})
+},
+{
                                 name: "cta_url",
                                 buttonParamsJson: JSON.stringify({
                                     display_text: "Contact Developer",
@@ -5305,11 +5314,6 @@ management, dan fitur lainnya.
     }, { quoted: lol });
 
     await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
-await conn.sendMessage(m.chat, {
-            audio: { url: "https://cdn.nekohime.site/file/8dRXLM4K.mp3" },
-            mimetype: "audio/mpeg",
-            ptt: true
-        }, { quoted: m });
 }
 break;
 //ORIGINIALALLMENU
@@ -5624,26 +5628,32 @@ text: `MutanoX-BotV10`
 
 nativeFlowMessage: {
 
-messageParamsJson: JSON.stringify({
-
-limited_time_offer: {
-text: "'KELPIN GV'",
-url: "https://t.me/hope6166",
-copy_code: "𝙨𝙘𝙧𝙞𝙥𝙩 𝙢𝙖𝙙𝙚 𝙗𝙮 𝙠𝙚𝙡𝙥𝙞𝙣",
-expiration_time: Date.now() + 86400000
-},
-
-bottom_sheet: {
-in_thread_buttons_limit: 2,
-divider_indices: [1,2,3,4,5,6,7,8,999],
-list_title: "press to see the menu",
-button_title: "Sellect Menu"
-}
-
-}),
+messageParamsJson: JSON.stringify({}),
 
 buttons: [
 
+{
+name: "single_select",
+buttonParamsJson: JSON.stringify({
+title: "Select Menu",
+sections: [
+{
+title: "\ud83d\udce6 Kategori Fitur",
+rows: [
+{ header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
+{ header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bugmenu` },
+{ header: "Create Panel", title: "Buat panel Pterodactyl", id: `${prefix}cpanel` },
+{ header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
+{ header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
+{ header: "Thanks To", title: "Daftar pendukung", id: `${prefix}tqto` },
+{ header: "Info / Request", title: "Kirim request fitur", id: `${prefix}request` },
+{ header: "About Developer", title: "Profil developer", id: `${prefix}developer` },
+{ header: "Back to Menu", title: "Kembali ke menu utama", id: `${prefix}menu` }
+]
+}
+]
+})
+},
 {
 name: "cta_url",
 buttonParamsJson: JSON.stringify({
@@ -5691,11 +5701,6 @@ url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
 }
 }, { quoted: lol })  
 await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
-await conn.sendMessage(m.chat, {
-            audio: { url: "https://cdn.nekohime.site/file/8dRXLM4K.mp3" },
-            mimetype: "audio/mpeg",
-            ptt: true
-        }, { quoted: qtoko });
 }
 break
 case "toviewonce":
@@ -6984,26 +6989,29 @@ thumbnail: randomThumb,
 
 nativeFlowMessage: {
 
-messageParamsJson: JSON.stringify({
-
-limited_time_offer: {
-text: "'KELPIN GV'",
-url: "https://t.me/hope6166",
-copy_code: "𝙨𝙘𝙧𝙞𝙥𝙩 𝙢𝙖𝙙𝙚 𝙗𝙮 𝙠𝙚𝙡𝙥𝙞𝙣",
-expiration_time: Date.now() + 86400000
-},
-
-bottom_sheet: {
-in_thread_buttons_limit: 2,
-divider_indices: [1,2,3,4,5,6,7,8,999],
-list_title: "press to see the menu",
-button_title: "Sellect Menu"
-}
-
-}),
+messageParamsJson: JSON.stringify({}),
 
 buttons: [
 
+{
+name: "single_select",
+buttonParamsJson: JSON.stringify({
+title: "Select Menu",
+sections: [
+{
+title: "\ud83d\udce6 Kategori Fitur",
+rows: [
+{ header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
+{ header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bugmenu` },
+{ header: "Create Panel", title: "Buat panel Pterodactyl", id: `${prefix}cpanel` },
+{ header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
+{ header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
+{ header: "Back to Menu", title: "Kembali ke menu utama", id: `${prefix}menu` }
+]
+}
+]
+})
+},
 {
 name: "cta_url",
 buttonParamsJson: JSON.stringify({
@@ -7048,11 +7056,6 @@ url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
 }
 }
 }, { quoted: lol })
-await conn.sendMessage(m.chat, {
-    audio: fs.readFileSync('./media/menu.mp3'),
-    mimetype: 'audio/mp4',
-    ptt: true
-}, { quoted: qtoko })
 }
 break
 
@@ -12639,37 +12642,30 @@ const MenuX = {
             footer: "Kelpin Official",
             thumbnail: "https://img2.pixhost.to/images/7564/720789337_kelpinn.jpg",
             nativeFlowMessage: {
-                messageParamsJson: JSON.stringify({
-                    limited_time_offer: {
-                        text: "ItachiTerbaru",
-                        url: "t.me/hope6166",
-                        copy_code: "KelpinXalquiz",
-                        expiration_time: Date.now() * 999
-                    },
-                    bottom_sheet: {
-                        in_thread_buttons_limit: 2,
-                        divider_indices: [1, 2, 3, 4, 5, 999],
-                        list_title: "KelpinGv X alquiz",
-                        button_title: "𝙋𝙄𝙇𝙄𝙃 𝙏𝙃𝙀𝙈𝘼"
-                    },
-                    tap_target_configuration: {
-                        title: "▸ X ◂",
-                        description: "bomboclard",
-                        canonical_url: "https://t.me/hope6166",
-                        domain: "shop.example.com",
-                        button_index: 0
-                    }
-                }),
+                messageParamsJson: JSON.stringify({}),
                 buttons: [
                     {
-                        name: "single_select",
-                        buttonParamsJson: JSON.stringify({ has_multiple_buttons: true })
-                    },
-                    {
-                        name: "call_permission_request",
-                        buttonParamsJson: JSON.stringify({ has_multiple_buttons: true })
-                    },
-                    {
+name: "single_select",
+buttonParamsJson: JSON.stringify({
+title: "Select Menu",
+sections: [
+{
+title: "\ud83d\udce6 Kategori Fitur",
+rows: [
+{ header: "Tema Enigma", title: "Install tema Enigma", id: `${prefix}installtemaenigma` },
+{ header: "Tema Nightcore", title: "Install tema Nightcore", id: `${prefix}installtemanightcore` },
+{ header: "Tema Stellar", title: "Install tema Stellar", id: `${prefix}installtemastellar` },
+{ header: "Tema Billing", title: "Install tema Billing", id: `${prefix}installtemabilling` },
+{ header: "Tema Nebula", title: "Install tema Nebula", id: `${prefix}installtemanebula` },
+{ header: "Install Depend", title: "Instalar dependencias VPS", id: `${prefix}installdepend` },
+{ header: "Uninstall Tema", title: "Remover tema Pterodactyl", id: `${prefix}uninstallthema` },
+{ header: "Back to Menu", title: "Kembali ke menu utama", id: `${prefix}menu` }
+]
+}
+]
+})
+},
+{
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
                             display_text: "installtemaenigma",
@@ -13204,23 +13200,28 @@ Semoga pengalaman menggunakan Pahina Md menyenangkan, interaktif, dan bermanfaat
                     },
 
                     nativeFlowMessage: {
-                        messageParamsJson: JSON.stringify({
-                            limited_time_offer: {
-                                text: "'KELPIN GV'",
-                                url: "https://t.me/hope6166",
-                                copy_code: "𝙨𝙘𝙧𝙞𝙥𝙩 𝙢𝙖𝙙𝙚 𝙗𝙮 𝙠𝙚𝙡𝙥𝙞𝙣",
-                                expiration_time: Date.now() + 86400000
-                            },
-                            bottom_sheet: {
-                                in_thread_buttons_limit: 2,
-                                divider_indices: [1,2,3,4,5,6,7,8,999],
-                                list_title: "press to see the menu",
-                                button_title: "Sellect Menu"
-                            }
-                        }),
+                        messageParamsJson: JSON.stringify({}),
 
                         buttons: [
                             {
+name: "single_select",
+buttonParamsJson: JSON.stringify({
+title: "Select Menu",
+sections: [
+{
+title: "\ud83d\udce6 Kategori Fitur",
+rows: [
+{ header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
+{ header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bugmenu` },
+{ header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
+{ header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
+{ header: "Back to Menu", title: "Kembali ke menu utama", id: `${prefix}menu` }
+]
+}
+]
+})
+},
+{
                                 name: "cta_url",
                                 buttonParamsJson: JSON.stringify({
                                     display_text: "Contact Developer",
