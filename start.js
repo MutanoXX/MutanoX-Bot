@@ -98,6 +98,14 @@ let phoneNumber = "";
 let restarting = false;
 
 // ============================================================
+// Guarda a referencia do socket atual. O Baileys agenda timers
+// internos (ex.: newsletterWMexQuery em newsletter.js:64) que
+// continuam disparando apos a conexao fechar, gerando o erro
+// "Connection Closed" como unhandledRejection nos logs.
+// ============================================================
+let currentSock = null;
+
+// ============================================================
 // withTimeout — igual ao connect.js que funciona
 // ============================================================
 function withTimeout(promise, ms, label) {
@@ -230,6 +238,10 @@ async function startBot() {
   // Apply Solving helper methods
   await Solving(sock, store);
 
+  // Guarda referencia global do socket ativo
+  currentSock = sock;
+  global.activeSock = sock;
+
   // ============================================================
   // CRITICAL: Verificar se já está registrado
   // Se não registrado, pedir pairing code (igual ao connect.js)
@@ -267,6 +279,17 @@ async function startBot() {
         chalk.yellow("[warn] Conexão fechou. Código:"),
         statusCode || 'sem_codigo'
       );
+
+      // ============================================================
+      // CRITICO: marcar o socket como morto e tentar fecha-lo para
+      // liberar os timers internos do Baileys (newsletterWMexQuery,
+      // keepAlive, presence). Esses timers disparam Connection Closed
+      // como unhandledRejection apos o close.
+      // ============================================================
+      if (currentSock === sock) currentSock = null;
+      try { sock.isDead = true; } catch (_) {}
+      try { if (typeof sock.end === 'function') sock.end(new Error('shutdown')); } catch (_) {}
+      try { if (typeof sock.destroy === 'function') sock.destroy(); } catch (_) {}
 
       // 515 = restartRequired (normal após pairing bem sucedido)
       if (statusCode === 515) {
@@ -340,9 +363,55 @@ async function startBot() {
   return sock;
 }
 
-// Error handlers (igual ao connect.js que funciona)
-process.on("uncaughtException", (err) => console.log(chalk.red("[uncaughtException]"), err.message || err));
-process.on("unhandledRejection", (err) => console.log(chalk.red("[unhandledRejection]"), err?.message || err));
+// ============================================================
+// Error handlers
+//
+// IMPORTANTE: o Baileys agenda internamente um setInterval para
+// newsletterWMexQuery (newsletter.js:64) que NAO e cancelado quando
+// a conexao fecha. Apos um disconnect (especialmente o 515
+// restartRequired que acontece logo apos o pareamento), esse timer
+// continua disparando e gera:
+//   Error: Connection Closed (statusCode 428 Precondition Required)
+// como rejeicao nao tratada.
+//
+// Esses erros sao COSMETICOS - o bot ja esta reiniciando via
+// startBot() no handler connection.update. Nao devemos derrubar
+// o processo por causa deles.
+// ============================================================
+
+function isBenignConnectionError(err) {
+  if (!err) return false;
+  const msg = (err.message || String(err)).toLowerCase();
+  if (msg.includes('connection closed')) return true;
+  if (msg.includes('precondition required')) return true;
+  // statusCode 428 = Precondition Required (Baileys Boom)
+  // statusCode 515 = restartRequired
+  if (err?.output?.statusCode === 428) return true;
+  if (err?.output?.statusCode === 515) return true;
+  return false;
+}
+
+process.on("uncaughtException", (err) => {
+  if (isBenignConnectionError(err)) return;
+  console.log(chalk.red("[uncaughtException]"), err.message || err);
+});
+
+process.on("unhandledRejection", (err) => {
+  if (isBenignConnectionError(err)) return;
+  console.log(chalk.red("[unhandledRejection]"), err?.message || err);
+});
+
+// Captura sinais para limpeza
+process.on('SIGINT', () => {
+  console.log(chalk.yellow('\n[exit] SIGINT recebido, encerrando...'));
+  if (currentSock) { try { currentSock.end(new Error('sigint')); } catch (_) {} }
+  process.exit(0);
+});
+process.on('SIGTERM', () => {
+  console.log(chalk.yellow('\n[exit] SIGTERM recebido, encerrando...'));
+  if (currentSock) { try { currentSock.end(new Error('sigterm')); } catch (_) {} }
+  process.exit(0);
+});
 
 startBot().catch((err) => {
   console.log(chalk.red("[fail] Não foi possível iniciar:"), err.message || err);

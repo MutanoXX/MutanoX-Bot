@@ -11758,7 +11758,13 @@ case "cekidch": case "idch": {
 if (!text) return Reply(example("linkchnya 🤨"))
 if (!text.includes("https://whatsapp.com/channel/")) return Reply("Link tautan tidak valid")
 let result = text.split('https://whatsapp.com/channel/')[1]
-let res = await conn.newsletterMetadata("invite", result)
+let res
+try {
+res = await conn.newsletterMetadata("invite", result)
+} catch (e) {
+console.error('newsletterMetadata error:', e?.message || e)
+return Reply("❌ Gagal mengambil metadata saluran. Bot mungkin baru saja reconnect, coba lagi em alguns segundos.")
+}
 let teks = `
 * *ID :* ${res.id}
 * *Nama :* ${res.name}
