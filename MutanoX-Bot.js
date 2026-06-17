@@ -5791,69 +5791,52 @@ const media = await prepareWAMessageMedia(
 { image: { url: randomThumb } },
 { upload: conn.waUploadToServer }
 )
-const audios = [
-'./media/menu2.mp3',
-'./media/menu3.mp3'
-]
-const randomAudio = audios[Math.floor(Math.random() * audios.length)]
-await new Promise(resolve => setTimeout(resolve, 2000))
 let load = await conn.sendMessage(m.chat, { text: "Loading Menu..." }, { quoted: m })
 
-let frames = [
-"▢▢▢▢▢",
-"▣▢▢▢▢",
-"▣▣▢▢▢",
-"▣▣▣▢▢",
-"▣▣▣▣▢",
-"▣▣▣▣▣"
-]
+let frames = ["\u25A2\u25A2\u25A2\u25A2\u25A2","\u25A3\u25A2\u25A2\u25A2\u25A2","\u25A3\u25A3\u25A2\u25A2\u25A2","\u25A3\u25A3\u25A3\u25A2\u25A2","\u25A3\u25A3\u25A3\u25A3\u25A2","\u25A3\u25A3\u25A3\u25A3\u25A3"]
 
 for (let i of frames) {
-await new Promise(r => setTimeout(r, 500))
+await new Promise(r => setTimeout(r, 350))
 await conn.sendMessage(m.chat, {
 text: `Loading Menu\n${i}`,
 edit: load.key
 })
 }
 
-// sukses
-await new Promise(r => setTimeout(r, 600))
+await new Promise(r => setTimeout(r, 350))
 await conn.sendMessage(m.chat, {
 text: `Success Loading Menu`,
 edit: load.key
 })
 
-await new Promise(r => setTimeout(r, 900))
-const more = String.fromCharCode(8206)
+await new Promise(r => setTimeout(r, 400))
 const readMore = "\u200e".repeat(4000)
 
-    let menu = `>  ▶︎ •၊၊||၊|။||||‌၊|• 1:00:0.23
-    nggak semua hal bakal sesuai dengan apa yg kita inginkan jadi jangan terlalu berharap sama hal yang belum pasti...
-    
-    *${greeting()}* ${pushname}, Perkenalkan saya adalah bot WhatsApp
-yang diciptakan oleh *Kelpin*, tujuannya untuk membantu berbagai
-kebutuhan seperti tools, group
-management, dan fitur lainnya.
-${readMore}
-╭┈ ˚ ·━━━━━━━━━━━━━━━━
-│┃꒰ 𖢷 *Name Bot  » MutanoX-BotMD*
-│┃꒰ 𖢷 *Developer* » *Kelpin Gv*
-│┃꒰ 𖢷 *Version  » V10.0.0*
-│┃꒰ 𖢷 *Language » JavaScript*
-│┃꒰ 𖢷 *RunTime   » ${runtime(process.uptime())}*
-│┃꒰ 𖢷 *Feature  » Multy&Bug*
-│┃꒰ 𖢷 *StatusScript  » buyVip/buyer*
-╰——————・・・・————・・・
-${readMore}
- ━━━〔 SUPPORT SCRIPT 〕━━━
-╭┈ ˚ ·━━━━━━━━━━━━━━━━
-┃☇ Arsena \`Friends\`
-┃☇ All Friend \`My Support\`
-┃☇ Script users \`Thank You\`
-┃☇ All Title MutanoX-BotMD \`Support\`
-┃☇ All Buyers Kelpin \`Support\`
-╰——————・・・・————・・・
-`
+    let menu = `${readMore}✨ *${greeting()}, ${pushname}!*
+✨ Bem-vindo ao *MutanoX-BotMD*
+✨ Bot WhatsApp criado por *Kelpin Gv*
+✨ Tools • Group Mgmt • Bug Features
+
+╭┈✨ 【 *BOT INFO* 】
+┃┃ *Name Bot*     » MutanoX-BotMD
+┃┃ *Developer*     » Kelpin Gv
+┃┃ *Version*       » V10.0.0
+┃┃ *Language*      » JavaScript
+┃┃ *RunTime*       » ${runtime(process.uptime())}
+┃┃ *Feature*       » Multy & Bug
+┃┃ *StatusScript*  » buyVip/buyer
+╰─────・・・・───・・・
+
+╭┈⚡ 【 *SUPPORT SCRIPT* 】
+┃⚡ Arsena                 — *Friends*
+┃⚡ All Friend             — *My Support*
+┃⚡ Script users           — *Thank You*
+┃⚡ All Title MutanoX-Bot  — *Support*
+┃⚡ All Buyers Kelpin      — *Support*
+╰─────・・・・───・・・
+
+${readMore}> Ketuk tombol *Select Menu* di bawah\n> para membuka daftar kategori fitur.\n`
+
  const msg = generateWAMessageFromContent(m.chat, {
 viewOnceMessage: {
 message: {
@@ -5863,7 +5846,7 @@ contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+newsletterName: "������������������������������������������",
 newsletterJid: "120363426723637081@newsletter",
 serverMessageId: 1
 }
@@ -5879,30 +5862,37 @@ text: menu
 },
 
 footer: {
-text: `\`ᴄʀᴇᴀᴛᴇᴅ ʙʏ 𝐤𝐞𝐥𝐩𝐢𝐧\``
+text: `ᴍᴌᴀᴇᴀᴁᴄᴅ ᴇᴇ ᴰᴢᴥᴩᴢᴧ`
 },
 
 nativeFlowMessage: {
 
-messageParamsJson: JSON.stringify({
-
-limited_time_offer: {
-text: "'KELPIN GV'",
-url: "https://t.me/hope6166",
-copy_code: "𝙨𝙘𝙧𝙞𝙥𝙩 𝙢𝙖𝙙𝙚 𝙗𝙮 𝙠𝙚𝙡𝙥𝙞𝙣",
-expiration_time: Date.now() + 86400000
-},
-
-bottom_sheet: {
-in_thread_buttons_limit: 2,
-divider_indices: [1,2,3,4,5,6,7,8,999],
-list_title: "𝐊𝐄𝐋𝐏𝐈𝐍",
-button_title: "Sellect Menu"
-}
-
-}),
+messageParamsJson: JSON.stringify({}),
 
 buttons: [
+
+{
+name: "single_select",
+buttonParamsJson: JSON.stringify({
+title: "Select Menu",
+sections: [
+{
+title: "������ Kategori Fitur",
+rows: [
+{ header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
+{ header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bug` },
+{ header: "Download Fitur", title: "Downloader menu", id: `${prefix}downloadmenu` },
+{ header: "Create Panel", title: "Buat panel Pterodactyl", id: `${prefix}cpanel` },
+{ header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
+{ header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
+{ header: "Thanks To", title: "Daftar pendukung", id: `${prefix}tqto` },
+{ header: "Info / Request", title: "Kirim request fitur", id: `${prefix}request` },
+{ header: "About Developer", title: "Profil developer", id: `${prefix}developer` }
+]
+}
+]
+})
+},
 
 {
 name: "quick_reply",
@@ -5994,24 +5984,6 @@ url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
 
 }, { quoted: lol })
 await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
-const audioBuffer = fs.readFileSync(randomAudio)
-await conn.sendMessage(m.chat, {
-    audio: audioBuffer,
-    mimetype: 'audio/mpeg',
-    ptt: true,
-    fileName: `vn-${Date.now()}-${Math.floor(Math.random()*9999)}.mp3`, // ← wajib koma
-
-    contextInfo: {
-        forwardingScore: 999999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-            newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
-            newsletterJid: "120363426723637081@newsletter",
-            serverMessageId: 1
-        }
-    }
-
-}, { quoted: qtoko })
 }
 break
 case "videotourl": {
