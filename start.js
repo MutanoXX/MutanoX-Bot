@@ -24,43 +24,8 @@
 // camada garante que nada relacionado a "Connection Closed"
 // seja impresso no stderr OU stdout.
 // ============================================================
-(function patchStderrFilter() {
-  const BLOCK_PATTERNS = [
-    'Connection Closed',
-    'Precondition Required',
-    'newsletterWMexQuery',
-    'UnhandledPromiseRejectionWarning',
-    'DeprecationWarning: Unhandled promise rejections',
-  ];
-  
-  function shouldBlock(chunk) {
-    const str = typeof chunk === 'string'
-      ? chunk
-      : (Buffer.isBuffer(chunk) ? chunk.toString('utf8') : '');
-    if (!str) return false;
-    return BLOCK_PATTERNS.some(pat => str.includes(pat));
-  }
-  
-  // Filtra stderr
-  const originalStderrWrite = process.stderr.write.bind(process.stderr);
-  process.stderr.write = function (chunk, encoding, callback) {
-    if (shouldBlock(chunk)) {
-      if (typeof callback === 'function') callback();
-      return true;
-    }
-    return originalStderrWrite(chunk, encoding, callback);
-  };
-  
-  // Filtra stdout (alguns handlers podem usar console.log)
-  const originalStdoutWrite = process.stdout.write.bind(process.stdout);
-  process.stdout.write = function (chunk, encoding, callback) {
-    if (shouldBlock(chunk)) {
-      if (typeof callback === 'function') callback();
-      return true;
-    }
-    return originalStdoutWrite(chunk, encoding, callback);
-  };
-})();
+// Filtro stderr/stdout removido - pino ja e silent + bootstrap usa
+// --unhandled-rejections=none. O filtro adicionava overhead em cada write.
 
 // ============================================================
 // Camada 2: suprime evento 'warning' do Node.js para warnings
@@ -78,7 +43,7 @@ process.on('warning', (warning) => {
 });
 
 require("./settings");
-const mainFile = require("./MutanoX-Bot");
+// mainFile removido - era carregado mas nunca usado (588KB morto no startup)
 const fs = require("fs");
 const pino = require("pino");
 const pathLib = require("path");
@@ -127,7 +92,8 @@ const {
     const dbInstance = new DataBase();
     const dbData = await dbInstance.read();
     if (dbData && Object.keys(dbData).length === 0) {
-      global.db = {
+      global._dbDirty = true;
+    global.db = {
         users: {},
         groups: {},
         database: {},
@@ -139,19 +105,23 @@ const {
       await dbInstance.write(global.db);
     } else {
       global.db = dbData;
+    global._dbDirty = true;
     }
     setInterval(async () => {
-      try {
-        if (global.db) {
-          await dbInstance.write(global.db);
-        }
-      } catch (e) {
-        console.error(chalk.red("[database] Erro no write periodico:"), e?.message || e);
+    try {
+      if (global.db && global._dbDirty) {
+        global._dbDirty = false;
+        await dbInstance.write(global.db);
       }
-    }, 3500);
+    } catch (e) {
+      console.error(chalk.red("[database] Erro no write periodico:"), e?.message || e);
+      global._dbDirty = true;
+    }
+  }, 30000);
   } catch (e) {
     console.error(chalk.red("[database] Erro ao inicializar database:"), e?.message || e);
     console.error(chalk.yellow("[database] Continuando com database vazio..."));
+    global._dbDirty = true;
     global.db = {
       users: {},
       groups: {},

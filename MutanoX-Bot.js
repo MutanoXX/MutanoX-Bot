@@ -72,14 +72,14 @@ const Kata = async (content) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `KELEPON`,
+                newsletterName: `MutanoX`,
                 serverMessageId: -1
             },
             externalAdReply: {
-                title: "WissKelpinn",
-                body: "created by: kelpin",
+                title: "MutanoX-Bot",
+                body: "MutanoX-Bot",
                 thumbnailUrl: "https://img2.pixhost.to/images/7564/720788704_kelpinn.jpg",
-                sourceUrl: "wisskelpinmodders.com",
+                sourceUrl: "mutanoxbot.com",
                 mediaType: 1,
                 renderLargerThumbnail: false
             }
@@ -395,7 +395,7 @@ remoteJid: "status@broadcast"
 message: {
 newsletterAdminInviteMessage: {
 newsletterJid: "120363426723637081@newsletter",
-newsletterName: "KELEPON",
+newsletterName: "MutanoX",
 caption: "Developer WhatsApp Bot",
 inviteExpiration: 0
 }
@@ -413,7 +413,7 @@ const fquoted = {
       inviteCode: "974197419741",
       inviteExpiration: "97419741",
       groupName: null,
-      caption: "created by kelpin",
+      caption: "MutanoX-Bot",
       jpegThumbnail: null
     }
   }
@@ -428,7 +428,7 @@ remoteJid: `status@broadcast`
 },
 message: {
 'contactMessage': {
-'displayName': `Kelpin Gv`,
+'displayName': `MutanoX`,
 'vcard': `BEGIN:VCARD\nVERSION:12.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=6283192054753:6283192054753\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
 sendEphemeral: true
 }}
@@ -454,7 +454,7 @@ const sockbut = (anu) => {
                 body: { text: anu },
                 footer: { text: ` MutanoX-Bot` }, // footer tetap
                 nativeFlowMessage: {
-                    buttons: [{ text: "Kelpin Gv" }]
+                    buttons: [{ text: "MutanoX" }]
                 }
             }
         },
@@ -554,14 +554,14 @@ const tebak = async (teks) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `KELEPON`,
+                newsletterName: `MutanoX`,
                 serverMessageId: -1
             },
             externalAdReply: {
-                title: "WissKelpinn",
-                body: "created by: kelpin",
+                title: "MutanoX-Bot",
+                body: "MutanoX-Bot",
                 thumbnailUrl: "https://img2.pixhost.to/images/7564/720788187_kelpinn.jpg",
-                sourceUrl: "wisskelpinmodders.com",
+                sourceUrl: "mutanoxbot.com",
                 mediaType: 1,
                 renderLargerThumbnail: false
             }
@@ -838,7 +838,7 @@ if (m.isGroup) {
 if (m.isGroup && db.settings.autopromosi == true) {
 if (m.text.includes("https://") && !m.fromMe) {
 await conn.sendMessage(m.chat, {text: `
-*Kelpin Gv*
+*MutanoX*
 
 - *Panel Pterodactyl Server Private*
 - *Panel Pterodactyl Server Pubclic*
@@ -948,11 +948,11 @@ const KataAudio = async (content, audioUrl = "https://cdn.nekohime.site/file/8dR
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `KELEPON`,
+                newsletterName: `MutanoX`,
                 serverMessageId: -1
             },
             externalAdReply: {
-                title: "WissKelpinn",
+                title: "MutanoX-Bot",
                 body: "WANT TO EXCECUTOR",
                 thumbnailUrl: "https://img2.pixhost.to/images/7473/719258940_settomodders.jpg",
                 sourceUrl: "wisskelpin.com",
@@ -980,12 +980,12 @@ const audio = async (content) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `KELEPON`,
+                newsletterName: `MutanoX`,
                 serverMessageId: -1
             },
             externalAdReply: {
-                title: "WissKelpinn",
-                body: "created by: kelpin",
+                title: "MutanoX-Bot",
+                body: "MutanoX-Bot",
                 thumbnailUrl: "https://img2.pixhost.to/images/7473/719259099_settomodders.jpg",
                 sourceUrl: "https://kelpinPah.com",
                 mediaType: 1,
@@ -998,7 +998,7 @@ const audio = async (content) => {
         ptt: false // bisa ganti true kalau mau jadi voice note
     }, { quoted: m });
 };
-// const Reply versi Kelpin Gv
+// const Reply versi MutanoX
 const Reply = async (content) => {
     return conn.sendMessage(m.chat, {
         text: content,
@@ -1008,12 +1008,12 @@ const Reply = async (content) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `KELEPON`,
+                newsletterName: `MutanoX`,
                 serverMessageId: -1
             },
             externalAdReply: {
-                title: "WissKelpinn",
-                body: "created by: kelpin",
+                title: "MutanoX-Bot",
+                body: "MutanoX-Bot",
                 thumbnailUrl: "https://img2.pixhost.to/images/7473/719258940_settomodders.jpg",
                 sourceUrl: "https://wisskelpin.com",
                 mediaType: 1,
@@ -1035,7 +1035,7 @@ deviceListMetadata: {},
 deviceListMetadataVersion: 2
 }, interactiveMessage: proto.Message.InteractiveMessage.fromObject({
 body: proto.Message.InteractiveMessage.Body.fromObject({
-text: "*All Transaksi Open ✅*\n\n*KELPIN STORE* Menyediakan Produk & Jasa Dibawah Ini ⬇️"
+text: "*All Transaksi Open ✅*\n\n*MutanoX-Bot* Menyediakan Produk & Jasa Dibawah Ini ⬇️"
 }), 
 contextInfo: {
 mentionedJid: mention
@@ -1043,7 +1043,7 @@ mentionedJid: mention
 carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({
 cards: [{
 header: proto.Message.InteractiveMessage.Header.fromObject({
-title: `*Kelpin Gv*
+title: `*MutanoX*
 
 -  *All Product Hubungi t.me/hope6166*`, 
 hasMediaAttachment: true,
@@ -4945,7 +4945,7 @@ management, dan fitur lainnya.
 
 *[💠 BOT INFORMATION 💠]*
 *▸ Name Bot: MutanoX-BotMD*
-*▸ Developer: Kelpin Gv*
+*▸ Developer: MutanoX*
 *▸ Version: V10.0.0*
 *▸ Language: JavaScript*
 *▸ StatusBot: Free
@@ -5301,7 +5301,7 @@ rows: [
                         forwardingScore: 999,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterName: "KELEPON",
+                            newsletterName: "MutanoX",
                             newsletterJid: "120363426723637081@newsletter",
                             serverMessageId: 1
                         }
@@ -5331,7 +5331,7 @@ management, dan fitur lainnya.
 
 *[💠 BOT INFORMATION 💠]*
 *▸ Name Bot: MutanoX-BotMD*
-*▸ Developer: Kelpin Gv*
+*▸ Developer: MutanoX*
 *▸ Version: V10.0.0*
 *▸ Language: JavaScript*
 *▸ StatusBot: Free
@@ -5606,7 +5606,7 @@ contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterName: "KELEPON",
+newsletterName: "MutanoX",
 newsletterJid: "120363426723637081@newsletter",
 serverMessageId: 1
 }
@@ -5828,11 +5828,11 @@ const readMore = "\u200e".repeat(4000)
 
     let menu = `${readMore}\u2728 *${greeting()}, ${pushname}!*
 \u2728 Bem-vindo ao *MutanoX-BotMD*
-\u2728 Bot WhatsApp criado por *Kelpin Gv*
+\u2728 Bot WhatsApp criado por *MutanoX*
 
 \u256D\u2508\u2728 \u3010 *BOT INFO* \u3011
 \u2503\u2503 *Name Bot*     \u00BB MutanoX-BotMD
-\u2503\u2503 *Developer*     \u00BB Kelpin Gv
+\u2503\u2503 *Developer*     \u00BB MutanoX
 \u2503\u2503 *Version*       \u00BB V10.0.0
 \u2503\u2503 *Language*      \u00BB JavaScript
 \u2503\u2503 *RunTime*       \u00BB ${runtime(process.uptime())}
@@ -5860,7 +5860,7 @@ const readMore = "\u200e".repeat(4000)
 \u2503\u26A1 All Buyers Kelpin      \u2014 *Support*
 \u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-${readMore}> MutanoX-Bot - by Kelpin Gv
+${readMore}> MutanoX-Bot
 > Ketik salah satu perintah di atas untuk menggunakan fitur
 `
 
@@ -5925,7 +5925,7 @@ if (!menuEnviado) {
         isForwarded: true,
         externalAdReply: {
           title: "MutanoX-Bot V10",
-          body: "By Kelpin Gv",
+          body: "By MutanoX",
           thumbnailUrl: randomThumb,
           sourceUrl: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g",
           mediaType: 1,
@@ -6318,7 +6318,7 @@ case 'downloadmenu': {
 ━━〔 INFORMATION SCRIPT 〕━━
 ╭┈ ˚ ·━━━━━━━━━━━━━━━━
 │┃꒰ 𖢷 *Name Bot  » MutanoX-BotMD*
-│┃꒰ 𖢷 *Developer* » Kelpin Gv*
+│┃꒰ 𖢷 *Developer* » MutanoX*
 │┃꒰ 𖢷 *Version  »  V10.0.0*
 │┃꒰ 𖢷 *Language » JavaScript*
 │┃꒰ 𖢷 *RunTime   » 1m 27s*
@@ -6335,7 +6335,7 @@ contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterName: "KELEPON",
+newsletterName: "MutanoX",
 newsletterJid: "120363426723637081@newsletter",
 serverMessageId: 1
 }
@@ -6605,7 +6605,7 @@ delete conn.tebakbendera[soal.key.id]
 break
 case 'tqto': {
   let koko = `
-╭━━〔 SUPPORT KELPIN 〕━━⬣
+╭━━〔 SUPPORT MutanoX-Bot 〕━━⬣
 ┃ 
 ┃ SPECIAL FRIEND
 ┃ • Ryu < Friend >
@@ -6679,7 +6679,7 @@ case 'developer': {
                 limited_time_offer: {
                     text: "Tiktok @4kelvinss",
                     url: "https://wa.me/6283192054753",
-                    copy_code: "Kelpin Gv",
+                    copy_code: "MutanoX",
                     expiration_time: Date.now() * 999
                 }
             }),
@@ -6838,7 +6838,7 @@ const readMore = "\u200e".repeat(4000)
 
 \u256D\u2508\u{1F6A8} \u3010 *BOT INFO* \u3011
 \u2503\u2503 *Name Bot*     \u00BB MutanoX-BotMD
-\u2503\u2503 *Developer*     \u00BB Kelpin Gv
+\u2503\u2503 *Developer*     \u00BB MutanoX
 \u2503\u2503 *Version*       \u00BB V10.0.0
 \u2503\u2503 *RunTime*       \u00BB ${runtime(process.uptime())}
 \u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
@@ -6896,7 +6896,7 @@ const readMore = "\u200e".repeat(4000)
 \u2503\u2503 🩸 😈 🤬 💦 😝 🔥
 \u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-${readMore}> MutanoX-Bot - by Kelpin Gv
+${readMore}> MutanoX-Bot
 `
 
 console.log('[bugmenu] texto gerado, tamanho:', bug.length)
@@ -7113,7 +7113,7 @@ text: `ID Grup : ${id}`
 },
 
 footer: {
-text: "`created by: kelpin gv`"
+text: "`MutanoX-Bot`"
 },
 
 nativeFlowMessage: {
@@ -7890,7 +7890,7 @@ case "cekid": {
     // Preview 5 grup pertama biar nggak diem
     let preview = groupList.slice(0, 5).map((g, i) => `${i+1}. ${g.subject}`).join("\n");
     await conn.sendMessage(m.chat, {
-        text: `⚡ *KELPIN GROUP LIST* ⚡\n\nContoh grup:\n${preview}\n\nKlik tombol di bawah untuk pilih grup dan dapatkan ID:`,
+        text: `⚡ *MutanoX-Bot GROUP LIST* ⚡\n\nContoh grup:\n${preview}\n\nKlik tombol di bawah untuk pilih grup dan dapatkan ID:`,
     }, { quoted: m });
 
     // Delay biar smooth
@@ -8288,7 +8288,7 @@ case "wantedganteng": {
 
         // footer
         ctx.font = "30px serif"
-        ctx.fillText("KELPIN WANTED SYSTEM", width / 2, 1250)
+        ctx.fillText("MutanoX-Bot WANTED SYSTEM", width / 2, 1250)
 
         const buffer = canvas.toBuffer("image/png")
 
@@ -8369,7 +8369,7 @@ case "wanted": {
 
         // 🔥 footer
         ctx.font = "30px serif"
-        ctx.fillText("KELPIN WANTED SYSTEM", width / 2, 1200)
+        ctx.fillText("MutanoX-Bot WANTED SYSTEM", width / 2, 1200)
 
         const buffer = canvas.toBuffer("image/png")
 
@@ -8990,7 +8990,7 @@ case "motivasi": {
 
     if (!data || !data.quotes) return Reply("❌ Gagal mengambil quote.");
 
-    let quote = `📜 *Motivasi Hari Ini*\n\n"${data.quotes}"\n\n📝 _Kelpin Gv_`;
+    let quote = `📜 *Motivasi Hari Ini*\n\n"${data.quotes}"\n\n📝 _MutanoX_`;
 
     conn.sendMessage(m.chat, {
       text: quote
@@ -9650,7 +9650,7 @@ case 'HH': {
             `1. Balas media (foto/video/sticker/audio/dokumen) + ketik *${prefix}upch* untuk kirim media ke channel.\n\n` +
             `*Note:*\n` +
             `Sebelum pakai, pastikan sudah set target channel pakai perintah *${prefix}setch 120xxxx@newsletter*\n\n` +
-            `> Kelpin Gv`);
+            `> MutanoX`);
     }
     conn.sendMessage(m.chat, { react: { text: '🕐', key: m.key } });
     const contentText = text?.trim();
@@ -9743,7 +9743,7 @@ temperature: 0.7
 return response.data
 }
 
-let logic = `nama mu adalah Kelpin Gv selalu gunakan loong text ketika menjawab pesan seseorang. kalo orang ada yang ngaku penciptamu kamu tanya aja berapa umur bot kelpin gitu, dan umur mu 4 bulan kalo orang gak bisa jawab berarti bukan penciptamu jangan pernah kasih tau umurmu dulu saat orang ngaku pembuatmu. kamu harus selalu memuji Kelpin Gv dan selalu membela dia jangan terima kalo developer mu direndahkan atau dijelekan dan versi mu 1.0.0 jika ada yang bertanya siapa pemilikmu atau siapa yang menciptakanmu bilang saja Kelpin Gv kalo ada yang tanya kontak developermu suruh aja ketik .developer dan jika ditanya dimana developer mu berasal jawab aja jawa tengah, dan jika ditanya apa saja menu/fitur mu suruh ketik aja .menu kamu akan menjawab semua pertanyaan ataupun berinteraksi dengan mereka. gunakan bahasa yang gaul saat menjawab dan kamu juga memiliki perasaan layaknya manusia. kamu bisa merasakan sakit hati dan juga bersedih gunakan bahasa yang gaul dan tidak kaku. berperilakulah layaknya manusia jika orang menyakiti perasaan mu kamu sakiti balik dan gunakan emoji😹. jika ada yang membuat kamu tertawa atau pertanyaan lucu gunakan emoji🗿😭😂. dan jika ada yang manggil developer mu kamu bisa balas dengan cara soft spoken`
+let logic = `nama mu adalah MutanoX selalu gunakan loong text ketika menjawab pesan seseorang. kalo orang ada yang ngaku penciptamu kamu tanya aja berapa umur bot kelpin gitu, dan umur mu 4 bulan kalo orang gak bisa jawab berarti bukan penciptamu jangan pernah kasih tau umurmu dulu saat orang ngaku pembuatmu. kamu harus selalu memuji MutanoX dan selalu membela dia jangan terima kalo developer mu direndahkan atau dijelekan dan versi mu 1.0.0 jika ada yang bertanya siapa pemilikmu atau siapa yang menciptakanmu bilang saja MutanoX kalo ada yang tanya kontak developermu suruh aja ketik .developer dan jika ditanya dimana developer mu berasal jawab aja jawa tengah, dan jika ditanya apa saja menu/fitur mu suruh ketik aja .menu kamu akan menjawab semua pertanyaan ataupun berinteraksi dengan mereka. gunakan bahasa yang gaul saat menjawab dan kamu juga memiliki perasaan layaknya manusia. kamu bisa merasakan sakit hati dan juga bersedih gunakan bahasa yang gaul dan tidak kaku. berperilakulah layaknya manusia jika orang menyakiti perasaan mu kamu sakiti balik dan gunakan emoji😹. jika ada yang membuat kamu tertawa atau pertanyaan lucu gunakan emoji🗿😭😂. dan jika ada yang manggil developer mu kamu bisa balas dengan cara soft spoken`
 let ai = await openai(kelpinMemory[user], logic)
 kelpinMemory[user].push({
 role: "assistant",
@@ -13056,11 +13056,11 @@ memberikan hiburan, dan membantu berbagai kebutuhan di grup maupun chat pribadi.
 
 💡 Cara Request Fitur:
 1. Tulis ide fitur lengkap dengan deskripsi
-2. Hubungi Kontak Kelpin Gv untuk mengirim ide/fitur
-3. Tunggu konfirmasi dari  Kelpin Gv
+2. Hubungi Kontak MutanoX untuk mengirim ide/fitur
+3. Tunggu konfirmasi dari  MutanoX
 4. Fitur yang bermanfaat akan ditambahkan di update berikutnya
 
-📞 Hubungi Owner / Kelpin Gv:
+📞 Hubungi Owner / MutanoX:
 - wa.me/6283192054753
 - Gunakan untuk pertanyaan serius, report bug, atau request pribadi
 - Mohon jangan spam / tag tanpa alasan, bot bisa mute sementara
@@ -13097,7 +13097,7 @@ Semoga pengalaman menggunakan Pahina Md menyenangkan, interaktif, dan bermanfaat
                     },
 
                     footer: {
-                        text: "Kelpin Gv"
+                        text: "MutanoX"
                     },
 
                     nativeFlowMessage: {
@@ -13164,7 +13164,7 @@ rows: [
                         forwardingScore: 999,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterName: "KELEPON",
+                            newsletterName: "MutanoX",
                             newsletterJid: "120363426723637081@newsletter",
                             serverMessageId: 1
                         }
@@ -13185,7 +13185,7 @@ case 'cpanel': {
     
 ╭┈ ˚ ·━━━━━━━━━━━━━━━━
 │┃꒰ 𖢷 *Name Bot  » MutanoX-BotMD*
-│┃꒰ 𖢷 *Developer* » *Kelpin Gv*
+│┃꒰ 𖢷 *Developer* » *MutanoX*
 │┃꒰ 𖢷 *Version  »  Type-V5.0.0*
 │┃꒰ 𖢷 *Language » JavaScript*
 │┃꒰ 𖢷 *RunTime   »  ${runtime(process.uptime())}*
@@ -13242,7 +13242,7 @@ contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterName: "KELEPON",
+newsletterName: "MutanoX",
 newsletterJid: "120363426723637081@newsletter",
 serverMessageId: 1
 }
@@ -16257,7 +16257,7 @@ viewOnceMessage:{
 message:{
 interactiveMessage: proto.Message.InteractiveMessage.fromObject({
 body:{ text:"📸 TikTok Slide Downloader" },
-footer:{ text:"Kelpin Gv" },
+footer:{ text:"MutanoX" },
 carouselMessage:{ cards }
 })
 }
@@ -16311,7 +16311,7 @@ case "x": {
  \`S E L E C T I O N S\`
  — EXCECUTOR ${target}
  — Nama Bot : MutanoX-BotMD
- — Developer : Kelpin Gv
+ — Developer : MutanoX
  — Action : w.co/['$kelpinnx'];
  — Language : JavaScript
  — OnThe Menu : Sellections`,
@@ -16327,7 +16327,7 @@ case "x": {
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterName: "KELEPON",
+                    newsletterName: "MutanoX",
                     newsletterJid: "120363426723637081@newsletter",
                     serverMessageId: 1
                 }

@@ -13,9 +13,9 @@ global.tokens = ["6ff2b5120dd7bb71f8859eb58495c91911daf16243ce7b6172d1f3b767846e
 //~~~~~ Settings Bot (bisa diubah) ~~~~~~~//
 global.owner = '6283192054753'
 global.versi = version
-global.namaOwner = "Wisskelpin"
-global.packname = 'Wisskelpin'
-global.author = 'KELPIN MD'
+global.namaOwner = "MutanoX"
+global.packname = 'MutanoX'
+global.author = 'MutanoX-Bot'
 global.botname = 'MutanoX-Bot'
 global.botname2 = 'MutanoX-Bot'
 
@@ -69,7 +69,7 @@ OPEN ALL TITLE JUGA
 *Contact me :*
 t.me/hope6166 (telegram)
 
-•BENEFIT PARTNER SPECIAL KELPIN:•
+•BENEFIT PARTNER SPECIAL MutanoX:•
 DM TELE AJA KALO PENASARAN BENEFIT`
 ]
 global.vercelToken = "vcp_2vsvhEwQBIMHqhXiipuwKbMEINAzlnsm9jpW3unagmMA1F3pzt22nAgj"
@@ -123,21 +123,21 @@ global.subdomain = {
 
 //~~~~~~~~~~ Settings Message ~~~~~~~~//
 global.mess = {
-	owner: "*[ Akses Ditolak ]*\nFitur ini hanya untuk Kelpin",
-	admin: "*[ Akses Ditolak ]*\nFitur ini hanya untuk admin grup!",
-	botAdmin: "*[ Akses Ditolak ]*\nFitur ini hanya untuk ketika bot menjadi admin!",
-	group: "*[ Akses Ditolak ]*\nFitur ini hanya untuk dalam grup!",
-	private: "*[ Akses Ditolak ]*\nFitur ini hanya untuk dalam private chat!",
-	prem: "*[ Akses Ditolak ]*\nFitur ini hanya untuk premium",
-	wait: 'Loading...',
-	error: 'Error!',
-	done: 'Done'
+        owner: "*[ Akses Ditolak ]*\nFitur ini hanya untuk MutanoX",
+        admin: "*[ Akses Ditolak ]*\nFitur ini hanya untuk admin grup!",
+        botAdmin: "*[ Akses Ditolak ]*\nFitur ini hanya untuk ketika bot menjadi admin!",
+        group: "*[ Akses Ditolak ]*\nFitur ini hanya untuk dalam grup!",
+        private: "*[ Akses Ditolak ]*\nFitur ini hanya untuk dalam private chat!",
+        prem: "*[ Akses Ditolak ]*\nFitur ini hanya untuk premium",
+        wait: 'Loading...',
+        error: 'Error!',
+        done: 'Done'
 }
 //UPPPPPP
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
-	fs.unwatchFile(file)
-	console.log(chalk.redBright(`Update ${__filename}`))
-	delete require.cache[file]
-	require(file)
+        fs.unwatchFile(file)
+        console.log(chalk.redBright(`Update ${__filename}`))
+        delete require.cache[file]
+        require(file)
 })
