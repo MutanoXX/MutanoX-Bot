@@ -5791,13 +5791,13 @@ break
           case "start":
           case "pah":
           case "menu":{
-console.log('[menu] 1/5 inicio - chat:', m.chat, '| sender:', m.sender)
+console.log('[menu] 1/6 inicio - chat:', m.chat)
 
 let load
 try {
   load = await conn.sendMessage(m.chat, { text: "Loading Menu..." }, { quoted: m })
 } catch (e) {
-  console.error('[menu] erro ao enviar loading:', e?.message || e)
+  console.error('[menu] erro loading:', e?.message || e)
 }
 
 let frames = ["\u25A2\u25A2\u25A2\u25A2\u25A2","\u25A3\u25A2\u25A2\u25A2\u25A2","\u25A3\u25A3\u25A2\u25A2\u25A2","\u25A3\u25A3\u25A3\u25A2\u25A2","\u25A3\u25A3\u25A3\u25A3\u25A2","\u25A3\u25A3\u25A3\u25A3\u25A3"]
@@ -5819,9 +5819,9 @@ try {
       edit: load.key
     }).catch(() => {})
   }
-  console.log('[menu] 2/5 frames concluidos')
+  console.log('[menu] 2/6 frames concluidos')
 } catch (e) {
-  console.error('[menu] erro nos frames (continuando):', e?.message || e)
+  console.error('[menu] erro frames:', e?.message || e)
 }
 
 await new Promise(r => setTimeout(r, 300))
@@ -5830,7 +5830,6 @@ const readMore = "\u200e".repeat(4000)
     let menu = `${readMore}\u2728 *${greeting()}, ${pushname}!*
 \u2728 Bem-vindo ao *MutanoX-BotMD*
 \u2728 Bot WhatsApp criado por *Kelpin Gv*
-\u2728 Tools \u2022 Group Mgmt \u2022 Bug Features
 
 \u256D\u2508\u2728 \u3010 *BOT INFO* \u3011
 \u2503\u2503 *Name Bot*     \u00BB MutanoX-BotMD
@@ -5842,6 +5841,18 @@ const readMore = "\u200e".repeat(4000)
 \u2503\u2503 *StatusScript*  \u00BB buyVip/buyer
 \u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
+\u256D\u2508\U0001F4E6 \u3010 *KATEGORI FITUR* \u3011
+\u2503\u2503 \u{1F4E6} *.allmenu*   \u2014 Lihat semua fitur
+\u2503\u2503 \u{1F41E} *.bugmenu*   \u2014 Fitur bug / attack
+\u2503\u2503 \u{1F4E5} *.downloadmenu* \u2014 Downloader menu
+\u2503\u2503 \u{1F9F1} *.cpanel*    \u2014 Buat panel Pterodactyl
+\u2503\u2503 \u{1F4B8} *.buysc*     \u2014 Info pembelian script
+\u2503\u2503 \u{1F4B3} *.qris*      \u2014 Info pembayaran (QRIS)
+\u2503\u2503 \u{1F64F} *.tqto*      \u2014 Daftar pendukung
+\u2503\u2503 \u{1F4AC} *.request*   \u2014 Kirim request fitur
+\u2503\u2503 \u{1F468}\u200D\u{1F4BB} *.developer* \u2014 Profil developer
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
+
 \u256D\u2508\u26A1 \u3010 *SUPPORT SCRIPT* \u3011
 \u2503\u26A1 Arsena                 \u2014 *Friends*
 \u2503\u26A1 All Friend             \u2014 *My Support*
@@ -5851,86 +5862,64 @@ const readMore = "\u200e".repeat(4000)
 \u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
 ${readMore}> MutanoX-Bot - by Kelpin Gv
+> Ketik salah satu perintah di atas untuk menggunakan fitur
 `
 
-console.log('[menu] 3/5 menu text gerado, tamanho:', menu.length)
+console.log('[menu] 3/6 menu text gerado, tamanho:', menu.length)
 
+// ============ TENTATIVA 1: image (Buffer baixado) + caption ============
 let menuEnviado = false
+try {
+  console.log('[menu] 4a/6 baixando thumbnail...')
+  const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
+  console.log('[menu]   thumbnail URL:', randomThumb)
+  
+  // Baixa a imagem para Buffer (abordagem mais compativel)
+  const axios = require("axios")
+  const imgRes = await axios.get(randomThumb, {
+    responseType: "arraybuffer",
+    timeout: 15000,
+    headers: { "User-Agent": "Mozilla/5.0 (Linux; Android 10)" }
+  })
+  const imgBuffer = Buffer.from(imgRes.data, "binary")
+  console.log('[menu] 4b/6 thumbnail baixada, bytes:', imgBuffer.length)
+  
+  await conn.sendMessage(m.chat, {
+    image: imgBuffer,
+    caption: menu,
+    fileName: "menu.jpg",
+    mimetype: "image/jpeg"
+  }, { quoted: m })
+  console.log('[menu] 4c/6 imagem+caption enviado OK!')
+  menuEnviado = true
+} catch (err1) {
+  console.error('[menu] 4x/6 tentativa 1 (buffer) FALHOU:', err1?.message || err1)
+}
 
-// ============ TENTATIVA A: interactive SEM viewOnceMessage SEM newsletter ============
+// ============ TENTATIVA 2: image via URL direta + caption ============
 if (!menuEnviado) {
   try {
-    console.log('[menu] 4a/5 tentando interactive direto (sem viewOnce, sem newsletter)...')
+    console.log('[menu] 5a/6 tentando image via URL direta...')
     const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
     
-    const media = await prepareWAMessageMedia(
-      { image: { url: randomThumb } },
-      { upload: conn.waUploadToServer }
-    )
-
-    const msg = generateWAMessageFromContent(m.chat, {
-      // SEM viewOnceMessage - interactive direto
-      interactiveMessage: {
-        header: {
-          hasMediaAttachment: true,
-          imageMessage: media.imageMessage
-        },
-        body: { text: menu },
-        footer: { text: "MutanoX-Bot V10" },
-        // SEM contextInfo/forwardedNewsletterMessageInfo
-        nativeFlowMessage: {
-          messageParamsJson: JSON.stringify({}),
-          buttons: [
-            {
-              name: "single_select",
-              buttonParamsJson: JSON.stringify({
-                title: "Select Menu",
-                sections: [{
-                  title: "Kategori",
-                  rows: [
-                    { header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
-                    { header: "Bug Fitur", title: "Fitur bug", id: `${prefix}bugmenu` },
-                    { header: "Buy Script", title: "Info pembelian", id: `${prefix}buysc` },
-                    { header: "About Dev", title: "Profil dev", id: `${prefix}developer` }
-                  ]
-                }]
-              })
-            },
-            {
-              name: "quick_reply",
-              buttonParamsJson: JSON.stringify({
-                display_text: "All Menu",
-                id: `${prefix}semua`
-              })
-            },
-            {
-              name: "cta_url",
-              buttonParamsJson: JSON.stringify({
-                display_text: "Saluran developer",
-                url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
-              })
-            }
-          ]
-        }
-      }
+    await conn.sendMessage(m.chat, {
+      image: { url: randomThumb },
+      caption: menu
     }, { quoted: m })
-    
-    // Usa sendMessage em vez de relayMessage (mais validado)
-    const sent = await conn.sendMessage(m.chat, msg.message, { quoted: m })
-    console.log('[menu] 4b/5 sendMessage interactive OK! key:', sent?.key?.id)
+    console.log('[menu] 5b/6 image URL enviado OK!')
     menuEnviado = true
-  } catch (errA) {
-    console.error('[menu] 4x/5 tentativa A FALHOU:', errA?.message || errA)
+  } catch (err2) {
+    console.error('[menu] 5x/6 tentativa 2 (URL) FALHOU:', err2?.message || err2)
   }
 }
 
-// ============ TENTATIVA B: texto + externalAdReply (thumbnail externa) ============
+// ============ TENTATIVA 3: texto + externalAdReply (thumbnail URL inline) ============
 if (!menuEnviado) {
   try {
-    console.log('[menu] 5a/5 tentando texto + externalAdReply...')
+    console.log('[menu] 6a/6 tentando texto + externalAdReply...')
     const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
     
-    const sent = await conn.sendMessage(m.chat, {
+    await conn.sendMessage(m.chat, {
       text: menu,
       contextInfo: {
         forwardingScore: 999,
@@ -5945,26 +5934,26 @@ if (!menuEnviado) {
         }
       }
     }, { quoted: m })
-    console.log('[menu] 5b/5 externalAdReply OK! key:', sent?.key?.id)
+    console.log('[menu] 6b/6 externalAdReply OK!')
     menuEnviado = true
-  } catch (errB) {
-    console.error('[menu] 5x/5 tentativa B FALHOU:', errB?.message || errB)
+  } catch (err3) {
+    console.error('[menu] 6x/6 tentativa 3 (externalAdReply) FALHOU:', err3?.message || err3)
   }
 }
 
-// ============ TENTATIVA C: texto puro (garantia) ============
+// ============ TENTATIVA 4: texto puro (garantia absoluta) ============
 if (!menuEnviado) {
   try {
-    console.log('[menu] 6a/5 tentando texto puro (fallback final)...')
-    const sent = await conn.sendMessage(m.chat, {
+    console.log('[menu] 7a/6 texto puro (fallback final)...')
+    await conn.sendMessage(m.chat, {
       text: menu
     }, { quoted: m })
-    console.log('[menu] 6b/5 texto puro OK! key:', sent?.key?.id)
+    console.log('[menu] 7b/6 texto puro OK!')
     menuEnviado = true
-  } catch (errC) {
-    console.error('[menu] 6x/5 texto puro FALHOU:', errC?.message || errC)
+  } catch (err4) {
+    console.error('[menu] 7x/6 texto puro FALHOU:', err4?.message || err4)
     try {
-      await Reply("❌ Erro ao exibir menu. Tente .allmenu ou .bugmenu")
+      await Reply("❌ Erro ao exibir menu. Tente .allmenu")
     } catch (_) {}
   }
 }
