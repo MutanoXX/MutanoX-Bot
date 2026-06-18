@@ -72,7 +72,7 @@ const Kata = async (content) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `𝐊𝐄𝐋𝐄𝐏𝐎𝐍`,
+                newsletterName: `KELEPON`,
                 serverMessageId: -1
             },
             externalAdReply: {
@@ -250,7 +250,7 @@ const qpayment = {key: {remoteJid: '0@s.whatsapp.net', fromMe: false, id: `owner
 
 const qlive = {key: {participant: '0@s.whatsapp.net', ...(m.chat ? {remoteJid: `status@broadcast`} : {})}, message: {liveLocationMessage: {caption: `${botname2} By ${namaOwner}`,jpegThumbnail: ""}}}
 
-const qtoko = {key: {participant: '0@s.whatsapp.net', ...(m.chat ? {remoteJid: `status@broadcast`} : {})}, message: {locationMessage: {name: `𝐊𝐄𝐋𝐄𝐏𝐎𝐍\nIndonesia 🇮🇩 , central java자바 섬`,jpegThumbnail: ""}}}
+const qtoko = {key: {participant: '0@s.whatsapp.net', ...(m.chat ? {remoteJid: `status@broadcast`} : {})}, message: {locationMessage: {name: `MutanoX-Bot\nIndonesia 🇮🇩`,jpegThumbnail: ""}}}
 
 const lol = {
   key: {
@@ -265,7 +265,7 @@ const lol = {
       itemCount: "13",
       status: "INQUIRY",
       surface: "CATALOG",
-      message: `WISS KELPIN\n亲爱的她 1.0.0`,
+      message: `MutanoX-Bot V10`,
       token: "AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA=="
     }
   },
@@ -290,7 +290,7 @@ amount1000: 999999999999999999999999999,
 requestFrom: '0@s.whatsapp.net',
 noteMessage: {
 extendedTextMessage: {
-text: `𝗞𝗘𝗟𝗣𝗜𝗡 𝗚𝗩`
+text: `MutanoX-Bot`
 }
 },
 expiryTimestamp: 99999999999999,
@@ -318,7 +318,7 @@ message: {
 
 videoMessage: {
 
-caption: "KELPIN GV 亲爱的她 ",
+caption: "MutanoX-Bot V10",
 
 seconds: 5,
 
@@ -338,7 +338,7 @@ remoteJid: "status@broadcast"
 },
 message: {
 extendedTextMessage: {
-text: "🎧 Kelpin GV ( ready )"
+text: "🎧 MutanoX-Bot (ready)"
 }
 }
 }
@@ -352,8 +352,7 @@ orderMessage: {
 itemCount: 2026,
 status: 1,
 surface: 1,
-message: `WISS KELPIN
-開発者による最新のスクリプト`,
+message: `MutanoX-Bot V10`,
 orderTitle: "WhatsApp Bot Developer",
 sellerJid: "6283192054753@s.whatsapp.net"
 }
@@ -374,7 +373,7 @@ amount1000: 0,
 requestFrom: '0@s.whatsapp.net',
 noteMessage: {
 extendedTextMessage: {
-text: `KELPIN GV 35.000IDR`
+text: `MutanoX-Bot V10`
 }
 },
 expiryTimestamp: 99999999999999,
@@ -396,7 +395,7 @@ remoteJid: "status@broadcast"
 message: {
 newsletterAdminInviteMessage: {
 newsletterJid: "120363426723637081@newsletter",
-newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+newsletterName: "KELEPON",
 caption: "Developer WhatsApp Bot",
 inviteExpiration: 0
 }
@@ -555,7 +554,7 @@ const tebak = async (teks) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `𝐊𝐄𝐋𝐄𝐏𝐎𝐍`,
+                newsletterName: `KELEPON`,
                 serverMessageId: -1
             },
             externalAdReply: {
@@ -949,7 +948,7 @@ const KataAudio = async (content, audioUrl = "https://cdn.nekohime.site/file/8dR
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `𝐊𝐄𝐋𝐄𝐏𝐎𝐍`,
+                newsletterName: `KELEPON`,
                 serverMessageId: -1
             },
             externalAdReply: {
@@ -981,7 +980,7 @@ const audio = async (content) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `𝐊𝐄𝐋𝐄𝐏𝐎𝐍`,
+                newsletterName: `KELEPON`,
                 serverMessageId: -1
             },
             externalAdReply: {
@@ -1009,7 +1008,7 @@ const Reply = async (content) => {
             forwardingScore: 256,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363426723637081@newsletter',
-                newsletterName: `𝐊𝐄𝐋𝐄𝐏𝐎𝐍`,
+                newsletterName: `KELEPON`,
                 serverMessageId: -1
             },
             externalAdReply: {
@@ -5302,7 +5301,7 @@ rows: [
                         forwardingScore: 999,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+                            newsletterName: "KELEPON",
                             newsletterJid: "120363426723637081@newsletter",
                             serverMessageId: 1
                         }
@@ -5607,7 +5606,7 @@ contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+newsletterName: "KELEPON",
 newsletterJid: "120363426723637081@newsletter",
 serverMessageId: 1
 }
@@ -6336,7 +6335,7 @@ contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+newsletterName: "KELEPON",
 newsletterJid: "120363426723637081@newsletter",
 serverMessageId: 1
 }
@@ -6421,7 +6420,7 @@ thumbnail: randomThumb,
 nativeFlowMessage: {
 messageParamsJson: JSON.stringify({
 limited_time_offer: {
-text: "'KELPIN GV'",
+text: "'MutanoX-Bot'",
 url: "https://wa.me/6283192054753",
 copy_code: "𝙨𝙘𝙧𝙞𝙥𝙩 𝙢𝙖𝙙𝙚 𝙗𝙮 𝙠𝙚𝙡𝙥𝙞𝙣",
 expiration_time: Date.now() * 999
@@ -6783,15 +6782,15 @@ case "buysc":{
 ───────────────────
 \`HARGA SC : 35k\`
 ───────────────────
-彡 Name SC : MutanoX-BotMD
-彡 Version SC : *1.0.0*
-彡 Feature : MD&BUG
-彡 Main : Whatsapp
+▸ Name SC : MutanoX-BotMD
+▸ Version SC : *1.0.0*
+▸ Feature : MD&BUG
+▸ Main : Whatsapp
 
 *Contact Developer:*
-彡 *https://wa.me//6283192054753*
-彡 *https://t.me/hope6166*
-彡 *https://t.me/hope6166*
+▸ *https://wa.me//6283192054753*
+▸ *https://t.me/hope6166*
+▸ *https://t.me/hope6166*
 > semua informasi script bisa hubungi contact diatas
 
 ───────────────────
@@ -13165,7 +13164,7 @@ rows: [
                         forwardingScore: 999,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+                            newsletterName: "KELEPON",
                             newsletterJid: "120363426723637081@newsletter",
                             serverMessageId: 1
                         }
@@ -13243,7 +13242,7 @@ contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+newsletterName: "KELEPON",
 newsletterJid: "120363426723637081@newsletter",
 serverMessageId: 1
 }
@@ -15092,7 +15091,7 @@ break
 
 case "listseller": {
 if (premium.length < 1) return Reply("Tidak ada user reseller")
-let teks = `\n *乂 List all reseller panel*\n`
+let teks = `\n *▸ List all reseller panel*\n`
 for (let i of premium) {
 teks += `\n* ${i.split("@")[0]}
 * *Tag :* @${i.split("@")[0]}\n`
@@ -15293,7 +15292,7 @@ let cek = await fetch(domainV2 + "/api/application/users?page=1", {
 let res2 = await cek.json();
 let users = res2.data;
 if (users.length < 1 ) return Reply("Tidak ada admin panel")
-var teks = "\n *乂 List admin panel pterodactyl*\n"
+var teks = "\n *▸ List admin panel pterodactyl*\n"
 await users.forEach((i) => {
 if (i.attributes.root_admin !== true) return
 teks += `\n* ID : *${i.attributes.id}*
@@ -15331,7 +15330,7 @@ let f = await fetch(domainV2 + "/api/application/servers?page=1", {
 let res = await f.json();
 let servers = res.data;
 if (servers.length < 1) return Reply("Tidak Ada Server Bot")
-let messageText = "\n  *乂 List server panel pterodactyl*\n"
+let messageText = "\n  *▸ List server panel pterodactyl*\n"
 for (let server of servers) {
 let s = server.attributes
 let f3 = await fetch(domainV2 + "/api/client/servers/" + s.uuid.split`-`[0] + "/resources", {
@@ -15596,7 +15595,7 @@ let cek = await fetch(domain + "/api/application/users?page=1", {
 let res2 = await cek.json();
 let users = res2.data;
 if (users.length < 1 ) return Reply("Tidak ada admin panel")
-var teks = " *乂 List admin panel pterodactyl*\n"
+var teks = " *▸ List admin panel pterodactyl*\n"
 await users.forEach((i) => {
 if (i.attributes.root_admin !== true) return
 teks += `\n* ID : *${i.attributes.id}*
@@ -15634,7 +15633,7 @@ let f = await fetch(domain + "/api/application/servers?page=1", {
 let res = await f.json();
 let servers = res.data;
 if (servers.length < 1) return Reply("Tidak Ada Server Bot")
-let messageText = "\n  *乂 List server panel pterodactyl*\n"
+let messageText = "\n  *▸ List server panel pterodactyl*\n"
 for (let server of servers) {
 let s = server.attributes
 let f3 = await fetch(domain + "/api/client/servers/" + s.uuid.split`-`[0] + "/resources", {
@@ -15931,7 +15930,7 @@ imageMessage: (await prepareWAMessageMedia(
 
 body: { text: teks },
 
-footer: { text: "PAYMENT • KELPIN GV" },
+footer: { text: "PAYMENT • MutanoX-Bot" },
 
 nativeFlowMessage: {
 buttons: [
@@ -16043,7 +16042,7 @@ break
 
 case "listowner": case "listown": {
 if (owners.length < 1) return Reply("Tidak ada owner tambahan")
-let teks = `\n *乂 List all owner tambahan*\n`
+let teks = `\n *▸ List all owner tambahan*\n`
 for (let i of owners) {
 teks += `\n* ${i.split("@")[0]}
 * *Tag :* @${i.split("@")[0]}\n`
@@ -16328,7 +16327,7 @@ case "x": {
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
+                    newsletterName: "KELEPON",
                     newsletterJid: "120363426723637081@newsletter",
                     serverMessageId: 1
                 }
