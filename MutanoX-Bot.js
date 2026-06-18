@@ -5791,225 +5791,194 @@ break
           case "start":
           case "pah":
           case "menu":{
-const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
-const media = await prepareWAMessageMedia(
-{ image: { url: randomThumb } },
-{ upload: conn.waUploadToServer }
-)
-let load = await conn.sendMessage(m.chat, { text: "Loading Menu..." }, { quoted: m })
+console.log('[menu] 1/6 inicio - chat:', m.chat, '| sender:', m.sender)
+
+let load
+try {
+  load = await conn.sendMessage(m.chat, { text: "Loading Menu..." }, { quoted: m })
+  console.log('[menu] 2/6 loading message enviada')
+} catch (e) {
+  console.error('[menu] erro ao enviar loading:', e?.message || e)
+}
 
 let frames = ["\u25A2\u25A2\u25A2\u25A2\u25A2","\u25A3\u25A2\u25A2\u25A2\u25A2","\u25A3\u25A3\u25A2\u25A2\u25A2","\u25A3\u25A3\u25A3\u25A2\u25A2","\u25A3\u25A3\u25A3\u25A3\u25A2","\u25A3\u25A3\u25A3\u25A3\u25A3"]
 
-for (let i of frames) {
-await new Promise(r => setTimeout(r, 350))
-await conn.sendMessage(m.chat, {
-text: `Loading Menu\n${i}`,
-edit: load.key
-})
+try {
+  for (let i of frames) {
+    await new Promise(r => setTimeout(r, 300))
+    if (load?.key) {
+      await conn.sendMessage(m.chat, {
+        text: `Loading Menu\n${i}`,
+        edit: load.key
+      }).catch(() => {})
+    }
+  }
+  if (load?.key) {
+    await new Promise(r => setTimeout(r, 300))
+    await conn.sendMessage(m.chat, {
+      text: `Success Loading Menu`,
+      edit: load.key
+    }).catch(() => {})
+  }
+  console.log('[menu] 3/6 frames concluidos')
+} catch (e) {
+  console.error('[menu] erro nos frames (continuando):', e?.message || e)
 }
 
-await new Promise(r => setTimeout(r, 350))
-await conn.sendMessage(m.chat, {
-text: `Success Loading Menu`,
-edit: load.key
-})
-
-await new Promise(r => setTimeout(r, 400))
+await new Promise(r => setTimeout(r, 300))
 const readMore = "\u200e".repeat(4000)
 
-    let menu = `${readMore}✨ *${greeting()}, ${pushname}!*
-✨ Bem-vindo ao *MutanoX-BotMD*
-✨ Bot WhatsApp criado por *Kelpin Gv*
-✨ Tools • Group Mgmt • Bug Features
+    let menu = `${readMore}\u2728 *${greeting()}, ${pushname}!*
+\u2728 Bem-vindo ao *MutanoX-BotMD*
+\u2728 Bot WhatsApp criado por *Kelpin Gv*
+\u2728 Tools \u2022 Group Mgmt \u2022 Bug Features
 
-╭┈✨ 【 *BOT INFO* 】
-┃┃ *Name Bot*     » MutanoX-BotMD
-┃┃ *Developer*     » Kelpin Gv
-┃┃ *Version*       » V10.0.0
-┃┃ *Language*      » JavaScript
-┃┃ *RunTime*       » ${runtime(process.uptime())}
-┃┃ *Feature*       » Multy & Bug
-┃┃ *StatusScript*  » buyVip/buyer
-╰─────・・・・───・・・
+\u256D\u2508\u2728 \u3010 *BOT INFO* \u3011
+\u2503\u2503 *Name Bot*     \u00BB MutanoX-BotMD
+\u2503\u2503 *Developer*     \u00BB Kelpin Gv
+\u2503\u2503 *Version*       \u00BB V10.0.0
+\u2503\u2503 *Language*      \u00BB JavaScript
+\u2503\u2503 *RunTime*       \u00BB ${runtime(process.uptime())}
+\u2503\u2503 *Feature*       \u00BB Multy & Bug
+\u2503\u2503 *StatusScript*  \u00BB buyVip/buyer
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-╭┈⚡ 【 *SUPPORT SCRIPT* 】
-┃⚡ Arsena                 — *Friends*
-┃⚡ All Friend             — *My Support*
-┃⚡ Script users           — *Thank You*
-┃⚡ All Title MutanoX-Bot  — *Support*
-┃⚡ All Buyers Kelpin      — *Support*
-╰─────・・・・───・・・
+\u256D\u2508\u26A1 \u3010 *SUPPORT SCRIPT* \u3011
+\u2503\u26A1 Arsena                 \u2014 *Friends*
+\u2503\u26A1 All Friend             \u2014 *My Support*
+\u2503\u26A1 Script users           \u2014 *Thank You*
+\u2503\u26A1 All Title MutanoX-Bot  \u2014 *Support*
+\u2503\u26A1 All Buyers Kelpin      \u2014 *Support*
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-${readMore}> Ketuk tombol *Select Menu* di bawah\n> para membuka daftar kategori fitur.\n`
+${readMore}> Ketuk tombol *Select Menu* di bawah
+> para membuka daftar kategori fitur.
+`
 
- const msg = generateWAMessageFromContent(m.chat, {
-viewOnceMessage: {
-message: {
-interactiveMessage: {
+console.log('[menu] 4/6 menu text gerado, tamanho:', menu.length)
 
-contextInfo: {
-forwardingScore: 999,
-isForwarded: true,
-forwardedNewsletterMessageInfo: {
-newsletterName: "������������������������������������������",
-newsletterJid: "120363426723637081@newsletter",
-serverMessageId: 1
-}
-},
-
-header: {
-hasMediaAttachment: true,
-imageMessage: media.imageMessage
-},
-
-body: {
-text: menu
-},
-
-footer: {
-text: `ᴍᴌᴀᴇᴀᴁᴄᴅ ᴇᴇ ᴰᴢᴥᴩᴢᴧ`
-},
-
-nativeFlowMessage: {
-
-messageParamsJson: JSON.stringify({}),
-
-buttons: [
-
-{
-name: "single_select",
-buttonParamsJson: JSON.stringify({
-title: "Select Menu",
-sections: [
-{
-title: "������ Kategori Fitur",
-rows: [
-{ header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
-{ header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bug` },
-{ header: "Download Fitur", title: "Downloader menu", id: `${prefix}downloadmenu` },
-{ header: "Create Panel", title: "Buat panel Pterodactyl", id: `${prefix}cpanel` },
-{ header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
-{ header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
-{ header: "Thanks To", title: "Daftar pendukung", id: `${prefix}tqto` },
-{ header: "Info / Request", title: "Kirim request fitur", id: `${prefix}request` },
-{ header: "About Developer", title: "Profil developer", id: `${prefix}developer` }
-]
-}
-]
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "All Menu (Image)",
-id: `${prefix}semua`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Bug Fitur",
-id: `${prefix}bug`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Download Fitur",
-id: `${prefix}downloadmenu`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Create Panel",
-id: `${prefix}cpanel`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Buy Script",
-id: `${prefix}buysc`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Payment Info",
-id: `${prefix}qris`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Thangks To",
-id: `${prefix}tqto`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Info/Request",
-id: `${prefix}request`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "About Developer",
-id: `${prefix}developer`
-})
-},
-
-{
-name: "cta_url",
-buttonParamsJson: JSON.stringify({
-display_text: "Saluran developer",
-url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
-})
-}
-
-]
-
-}
-
-}
-}
-}
-
-}, { quoted: m })
+// ============ TENTATIVA 1: menu interativo com imagem ============
+let interactiveEnviado = false
 try {
-await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
-} catch (relayErr) {
-console.error('[menu] Erro ao relayMessage (interactive):', relayErr?.message || relayErr)
-// Fallback: envia o menu como texto simples se o interactive falhar
-try {
-await conn.sendMessage(m.chat, {
-text: menu + '\n\n_⚠️ Botão interativo indisponível - menu em modo texto_',
-contextInfo: {
-forwardingScore: 999,
-isForwarded: true,
-forwardedNewsletterMessageInfo: {
-newsletterName: "\u{1D407}\u{1D404}\u{1D3BF}\u{1D3BF}\u{1D3DE}\u{1D414}\u{1D427}",
-newsletterJid: "120363426723637081@newsletter",
-serverMessageId: 1
+  console.log('[menu] 5a/6 tentando interactive com imagem...')
+  const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
+  console.log('[menu]   thumbnail:', randomThumb)
+  
+  const media = await prepareWAMessageMedia(
+    { image: { url: randomThumb } },
+    { upload: conn.waUploadToServer }
+  )
+  console.log('[menu]   prepareWAMessageMedia OK, imageMessage:', !!media?.imageMessage)
+
+  const msg = generateWAMessageFromContent(m.chat, {
+    viewOnceMessage: {
+      message: {
+        interactiveMessage: {
+          contextInfo: {
+            forwardingScore: 999,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+              newsletterName: "\u{1D407}\u{1D404}\u{1D3BF}\u{1D3BF}\u{1D3DE}\u{1D414}\u{1D427}",
+              newsletterJid: "120363426723637081@newsletter",
+              serverMessageId: 1
+            }
+          },
+          header: {
+            hasMediaAttachment: true,
+            imageMessage: media.imageMessage
+          },
+          body: { text: menu },
+          footer: { text: "\u{1D0D}\u{1D0C}\u{1D00}\u{1D07}\u{1D00}\u{1D01}\u{1D04}\u{1D05} \u{1D07}\u{1D07} \u{1D30}\u{1D22}\u{1D25}\u{1D29}\u{1D22}\u{1D27}" },
+          nativeFlowMessage: {
+            messageParamsJson: JSON.stringify({}),
+            buttons: [
+              {
+                name: "single_select",
+                buttonParamsJson: JSON.stringify({
+                  title: "Select Menu",
+                  sections: [{
+                    title: "\u{1F4E6} Kategori Fitur",
+                    rows: [
+                      { header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
+                      { header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bugmenu` },
+                      { header: "Download Fitur", title: "Downloader menu", id: `${prefix}downloadmenu` },
+                      { header: "Create Panel", title: "Buat panel Pterodactyl", id: `${prefix}cpanel` },
+                      { header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
+                      { header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
+                      { header: "Thanks To", title: "Daftar pendukung", id: `${prefix}tqto` },
+                      { header: "Info / Request", title: "Kirim request fitur", id: `${prefix}request` },
+                      { header: "About Developer", title: "Profil developer", id: `${prefix}developer` }
+                    ]
+                  }]
+                })
+              },
+              {
+                name: "quick_reply",
+                buttonParamsJson: JSON.stringify({
+                  display_text: "All Menu (Image)",
+                  id: `${prefix}semua`
+                })
+              },
+              {
+                name: "quick_reply",
+                buttonParamsJson: JSON.stringify({
+                  display_text: "Bug Fitur",
+                  id: `${prefix}bugmenu`
+                })
+              },
+              {
+                name: "quick_reply",
+                buttonParamsJson: JSON.stringify({
+                  display_text: "Buy Script",
+                  id: `${prefix}buysc`
+                })
+              },
+              {
+                name: "cta_url",
+                buttonParamsJson: JSON.stringify({
+                  display_text: "Saluran developer",
+                  url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
+                })
+              }
+            ]
+          }
+        }
+      }
+    }
+  }, { quoted: m })
+  console.log('[menu]   generateWAMessageFromContent OK, key:', msg?.key?.id)
+
+  await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+  console.log('[menu] 5b/6 relayMessage OK - menu interativo enviado!')
+  interactiveEnviado = true
+} catch (interactiveErr) {
+  console.error('[menu] 5x/6 interactive FALHOU:', interactiveErr?.message || interactiveErr)
+  console.error('[menu]   stack:', interactiveErr?.stack?.split("\n").slice(0,3).join(" | "))
 }
-}
-}, { quoted: m })
-} catch (fallbackErr) {
-console.error('[menu] Fallback tambem falhou:', fallbackErr?.message || fallbackErr)
-Reply('❌ Erro ao exibir o menu. Tente novamente.')
-}
+
+// ============ TENTATIVA 2: fallback texto plano ============
+if (!interactiveEnviado) {
+  console.log('[menu] 6a/6 tentando fallback texto plano...')
+  try {
+    await conn.sendMessage(m.chat, {
+      text: menu,
+      contextInfo: {
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterName: "\u{1D407}\u{1D404}\u{1D3BF}\u{1D3BF}\u{1D3DE}\u{1D414}\u{1D427}",
+          newsletterJid: "120363426723637081@newsletter",
+          serverMessageId: 1
+        }
+      }
+    }, { quoted: m })
+    console.log('[menu] 6b/6 fallback texto OK - menu enviado em modo texto')
+  } catch (fallbackErr) {
+    console.error('[menu] 6x/6 fallback texto FALHOU:', fallbackErr?.message || fallbackErr)
+    try {
+      await Reply("❌ Erro ao exibir o menu. Tente novamente em alguns segundos.")
+    } catch (_) {}
+  }
 }
 }
 break
