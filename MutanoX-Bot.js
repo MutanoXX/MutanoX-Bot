@@ -6831,201 +6831,127 @@ await conn.sendMessage(m.chat, {
 break
 case "bug":
 case "bugmenu":{
-    let bug = `*${greeting()}* ${pushname}, perkenalkan saya adalah bot Whatsapp yang diciptakan oleh *kelpin*, bertujuan untuk membantu anda
+console.log('[bugmenu] inicio')
 
-╭┈ ˚ ·
-│┃꒰ 𖢷 *Name Bot  » MutanoX-BotMD*
-│┃꒰ 𖢷 *Developer* » *Kelpin Gv*
-│┃꒰ 𖢷 *Version  »  V10.0.0*
-│┃꒰ 𖢷 *Language » JavaScript*
-│┃꒰ 𖢷 *RunTime   »  ${runtime(process.uptime())}*
-│┃꒰ 𖢷 *Feature  » Multy&Bug*
-│┃꒰ 𖢷 *StatusScript  » buyVip/buyer*
-╰——————・・・・————・・・
+const readMore = "\u200e".repeat(4000)
 
-╭┈ ˚ ·  ━  *｢ \`ATTACT ANTI KENON\` ｣*
-│┃꒰ 𖢷.*Forclose*
-│°forclose invisible new>
-│┃꒰ 𖢷.*forclose-delay*
-│°forclose and delay invis>
-│┃꒰ 𖢷.*Forclose1msg*
-│°forclose invisible new>
-│┃꒰ 𖢷.*Sedot-internal*
-│°efek: sedot internal x delay>
-│┃꒰ 𖢷.*Delaybebasspam*
-│°efek: sedot kuota x delay>
-│┃꒰ 𖢷.*Delayautoc1*
-│°efek: delayhard x crash>
-│┃꒰ 𖢷.*Delayinvishard*
-│°efek: delay hard no jejak>
-╰——————・・・・————・・・
+    let bug = `${readMore}\u{1F41E} *BUG MENU - MutanoX-Bot*
 
-╭┈ ˚ ·   ━  *｢ \`RECOMMEND BUG\` ｣* 
-│┃꒰ 𖢷.*Forcloseclick*
-│°efek: forclose ios invis>
-│┃꒰ 𖢷.*Crashios*
-│°efek: crash ios click>
-│┃꒰ 𖢷.*Blankclick*
-│°efek: blank in place click>
-│┃꒰ 𖢷.*Sedotkuota*
-│°efek: sedot kuota no jejak>
-│┃꒰ 𖢷.*Crashui*
-│°efek: blank and crash>
-│┃꒰ 𖢷.*Delayhard*
-│°efek: delay hard new>
-│┃꒰ 𖢷.*Blanknotif*
-│°efek: blank not all device>
-│┃꒰ 𖢷.*Spamcallvideo*
-│°efek: spam telepon crash>
-╰——————・・・・————・・・
+\u256D\u2508\u{1F6A8} \u3010 *BOT INFO* \u3011
+\u2503\u2503 *Name Bot*     \u00BB MutanoX-BotMD
+\u2503\u2503 *Developer*     \u00BB Kelpin Gv
+\u2503\u2503 *Version*       \u00BB V10.0.0
+\u2503\u2503 *RunTime*       \u00BB ${runtime(process.uptime())}
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-╭┈ ˚ ·  ━ *｢ \`BUG GROUP\` ｣* 
-┃ *[ketik command di dlm grub]*
-│┃꒰ 𖢷.*Ui-group2*
-│°efek: delay x blank group>
-│┃꒰ 𖢷.*Freeze-group*
-│°efek: bug freeze group>
-│┃꒰ 𖢷.*Delay-group*
-│°efek: delay in group>
-┃ \`USE URL/LINK GC\`
-│┃꒰ 𖢷.*Ui-Group*
-│°efek: bug freeze x delay group>
-╰——————・・・・————・・・
+\u256D\u2508\u{1F6A8} \u3010 *ATTACT ANTI KENON* \u3011
+\u2503\u2503 .*Forclose*          - forclose invisible new
+\u2503\u2503 .*forclose-delay*    - forclose and delay invis
+\u2503\u2503 .*Forclose1msg*      - forclose invisible new
+\u2503\u2503 .*Sedot-internal*    - sedot internal x delay
+\u2503\u2503 .*Delaybebasspam*    - sedot kuota x delay
+\u2503\u2503 .*Delayautoc1*       - delayhard x crash
+\u2503\u2503 .*Delayinvishard*    - delay hard no jejak
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-╭┈ ˚ ·  ━  *｢ \`BUG CHANNEL\` ｣* 
-┃ *[harus admin saluran]*
-│┃꒰ 𖢷.*Fcsaluran*
-│°ketik didlm saluran whatsApp>
-╰——————・・・・————・・・
+\u256D\u2508\u{1F6A8} \u3010 *RECOMMEND BUG* \u3011
+\u2503\u2503 .*Forcloseclick* - forclose ios invis
+\u2503\u2503 .*Crashios*      - crash ios click
+\u2503\u2503 .*Blankclick*    - blank in place click
+\u2503\u2503 .*Sedotkuota*    - sedot kuota no jejak
+\u2503\u2503 .*Crashui*       - blank and crash
+\u2503\u2503 .*Delayhard*     - delay hard new
+\u2503\u2503 .*Blanknotif*    - blank not all device
+\u2503\u2503 .*Spamcallvideo* - spam telepon crash
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-╭┈ ˚ ·  ━  *｢ \`BUG NUMBER\` ｣* 
-┃ \`IOS KILL\`
-│┃꒰ 𖢷.*ForcloseIos*
-│°efek: forclose ios invis>
-│┃꒰ 𖢷.*Crashios*
-│°efek: crash ios click>
-│┃꒰ 𖢷.*Freezeios*
-│°efek: crash click ios>
-│° \`ANDROID KILL\`
-│┃꒰ 𖢷.*Spamcallbiasa*
-│°efek: crash all whatsApp> 
-│┃꒰ 𖢷.*Spamcallvideo*
-│°efek: blank x delay>
-│┃꒰ 𖢷.*spairing*
-│°efek: spam notifikasi>
-│┃꒰ 𖢷.*Crashbeta*
-│°efek: forclose and crash>
-│┃꒰ 𖢷.*Delayinvis*
-│°efek: invis no tag sw>
-│┃꒰ 𖢷.*Delayhard*
-│°efek: delay hard new>
-│┃꒰ 𖢷.*Blanknew*
-│°efek: blank x delay>
-│┃꒰ 𖢷.*Ampas*
-│°efek: freezzz click>
-│┃꒰ 𖢷.*Delaycombo*
-│°efek: delayhard x crash>
-╰——————・・・・————・・・
+\u256D\u2508\u{1F6A8} \u3010 *BUG GROUP* \u3011 (ketik command di dlm grub)
+\u2503\u2503 .*Ui-group2*   - delay x blank group
+\u2503\u2503 .*Freeze-group* - bug freeze group
+\u2503\u2503 .*Delay-group*  - delay in group
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
 
-╭┈ ˚ ·  ━  *｢ \`BUG EMOJI\` ｣* 
-│┃꒰ 𖢷.*🩸 ex 62882xxxx* 
-│┃꒰ 𖢷.*😈 ex 62882xxxx*
-│┃꒰ 𖢷.*🤬 ex 62882xxxx*
-│┃꒰ 𖢷.*💦 ex 62882xxxx*
-│┃꒰ 𖢷.*😝 ex 62882xxxx*
-│┃꒰ 𖢷.*🔥 ex 62882xxxx*
-╰——————・・・・————・・・
+\u256D\u2508\u{1F6A8} \u3010 *BUG CHANNEL* \u3011 (harus admin saluran)
+\u2503\u2503 .*Fcsaluran* - ketik didlm saluran whatsApp
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
+
+\u256D\u2508\u{1F6A8} \u3010 *BUG NUMBER - IOS KILL* \u3011
+\u2503\u2503 .*ForcloseIos*   - forclose ios invis
+\u2503\u2503 .*Crashios*      - crash ios click
+\u2503\u2503 .*Freezeios*     - crash click ios
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
+
+\u256D\u2508\u{1F6A8} \u3010 *BUG NUMBER - ANDROID KILL* \u3011
+\u2503\u2503 .*Spamcallbiasa* - crash all whatsApp
+\u2503\u2503 .*Spamcallvideo* - blank x delay
+\u2503\u2503 .*spairing*       - spam notifikasi
+\u2503\u2503 .*Crashbeta*      - forclose and crash
+\u2503\u2503 .*Delayinvis*     - invis no tag sw
+\u2503\u2503 .*Delayhard*      - delay hard new
+\u2503\u2503 .*Blanknew*       - blank x delay
+\u2503\u2503 .*Ampas*          - freezzz click
+\u2503\u2503 .*Delaycombo*     - delayhard x crash
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
+
+\u256D\u2508\u{1F6A8} \u3010 *BUG EMOJI* \u3011 (ex: .🩸 62882xxxx)
+\u2503\u2503 🩸 😈 🤬 💦 😝 🔥
+\u256E\u2500\u2500\u2500\u2500\u2500\u30FB\u30FB\u30FB\u30FB\u2500\u2500\u2500\u30FB\u30FB\u30FB
+
+${readMore}> MutanoX-Bot - by Kelpin Gv
 `
-const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
 
-await conn.sendMessage(m.chat, {
-interactiveMessage: {
+console.log('[bugmenu] texto gerado, tamanho:', bug.length)
 
-contextInfo: {
-forwardingScore: 999,
-isForwarded: true,
-forwardedNewsletterMessageInfo: {
-newsletterName: "𝐊𝐄𝐋𝐄𝐏𝐎𝐍",
-newsletterJid: "120363426723637081@newsletter",
-serverMessageId: 1
+let bugEnviado = false
+
+// TENTATIVA 1: image buffer + caption
+try {
+  const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
+  const axios = require("axios")
+  const imgRes = await axios.get(randomThumb, {
+    responseType: "arraybuffer",
+    timeout: 15000,
+    headers: { "User-Agent": "Mozilla/5.0 (Linux; Android 10)" }
+  })
+  const imgBuffer = Buffer.from(imgRes.data, "binary")
+  await conn.sendMessage(m.chat, {
+    image: imgBuffer,
+    caption: bug,
+    fileName: "bugmenu.jpg",
+    mimetype: "image/jpeg"
+  }, { quoted: m })
+  console.log('[bugmenu] image+caption OK')
+  bugEnviado = true
+} catch (err1) {
+  console.error('[bugmenu] tentativa 1 FALHOU:', err1?.message || err1)
 }
-},
 
-title: bug,
-
-footer: `MutanoX-BotV10`,
-
-thumbnail: randomThumb,
-
-nativeFlowMessage: {
-
-messageParamsJson: JSON.stringify({}),
-
-buttons: [
-
-{
-name: "single_select",
-buttonParamsJson: JSON.stringify({
-title: "Select Menu",
-sections: [
-{
-title: "\ud83d\udce6 Kategori Fitur",
-rows: [
-{ header: "All Menu", title: "Lihat semua fitur", id: `${prefix}semua` },
-{ header: "Bug Fitur", title: "Fitur bug / attack", id: `${prefix}bugmenu` },
-{ header: "Create Panel", title: "Buat panel Pterodactyl", id: `${prefix}cpanel` },
-{ header: "Buy Script", title: "Info pembelian script", id: `${prefix}buysc` },
-{ header: "Payment Info", title: "Info pembayaran (QRIS)", id: `${prefix}qris` },
-{ header: "Back to Menu", title: "Kembali ke menu utama", id: `${prefix}menu` }
-]
+// TENTATIVA 2: image via URL
+if (!bugEnviado) {
+  try {
+    const randomThumb = thumbnails[Math.floor(Math.random() * thumbnails.length)]
+    await conn.sendMessage(m.chat, {
+      image: { url: randomThumb },
+      caption: bug
+    }, { quoted: m })
+    console.log('[bugmenu] image URL OK')
+    bugEnviado = true
+  } catch (err2) {
+    console.error('[bugmenu] tentativa 2 FALHOU:', err2?.message || err2)
+  }
 }
-]
-})
-},
-{
-name: "cta_url",
-buttonParamsJson: JSON.stringify({
-display_text: "Contact Developer",
-url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
-})
-},
 
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Back Menu",
-id: `${prefix}menu`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "All Fitur",
-id: `${prefix}allmenu`
-})
-},
-
-{
-name: "quick_reply",
-buttonParamsJson: JSON.stringify({
-display_text: "Buy Script",
-id: `${prefix}buysc`
-})
-},
-
-{
-name: "cta_url",
-buttonParamsJson: JSON.stringify({
-display_text: "Saluran Developer",
-url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
-})
+// TENTATIVA 3: texto puro
+if (!bugEnviado) {
+  try {
+    await conn.sendMessage(m.chat, { text: bug }, { quoted: m })
+    console.log('[bugmenu] texto puro OK')
+    bugEnviado = true
+  } catch (err3) {
+    console.error('[bugmenu] texto puro FALHOU:', err3?.message || err3)
+    try { await Reply("❌ Erro ao exibir bugmenu") } catch (_) {}
+  }
 }
-    
-]
-}
-}
-}, { quoted: lol })
 }
 break
 
@@ -16467,11 +16393,20 @@ if (stdout) return Reply(stdout)
 }
 } catch (err) {
 console.log(util.format(err));
-let Obj = global.owner
-conn.sendMessage(Obj + "@s.whatsapp.net", {text: `*Hallo developer, telah terjadi error pada command :* ${isCmd ? prefix+command : m.text}
+// Fallback seguro: isCmd/prefix/command podem nao estar definidos
+// se o erro ocorreu ANTES da linha que os define (ex.: LoadDataBase falhou)
+const _safeCmd = (typeof isCmd !== 'undefined' && isCmd && typeof prefix !== 'undefined' && typeof command !== 'undefined')
+  ? (prefix + command)
+  : (typeof m !== 'undefined' && m?.text ? m.text : '(desconhecido)')
+const _safeOwner = (typeof global !== 'undefined' && global.owner) ? global.owner : null
+if (_safeOwner) {
+  try {
+    conn.sendMessage(_safeOwner + "@s.whatsapp.net", {text: `*Hallo developer, telah terjadi error pada command :* ${_safeCmd}
 
 *Detail informasi error :*
-${util.format(err)}`, contextInfo: { isForwarded: true }}, {quoted: m})
+${util.format(err)}`, contextInfo: { isForwarded: true }}, {quoted: m}).catch(() => {})
+  } catch (_) {}
+}
 }}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
