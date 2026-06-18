@@ -5987,8 +5987,30 @@ url: "https://whatsapp.com/channel/0029VbCRzsBHrDZpXJT0Pt0g"
 }
 }
 
-}, { quoted: lol })
+}, { quoted: m })
+try {
 await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+} catch (relayErr) {
+console.error('[menu] Erro ao relayMessage (interactive):', relayErr?.message || relayErr)
+// Fallback: envia o menu como texto simples se o interactive falhar
+try {
+await conn.sendMessage(m.chat, {
+text: menu + '\n\n_⚠️ Botão interativo indisponível - menu em modo texto_',
+contextInfo: {
+forwardingScore: 999,
+isForwarded: true,
+forwardedNewsletterMessageInfo: {
+newsletterName: "\u{1D407}\u{1D404}\u{1D3BF}\u{1D3BF}\u{1D3DE}\u{1D414}\u{1D427}",
+newsletterJid: "120363426723637081@newsletter",
+serverMessageId: 1
+}
+}
+}, { quoted: m })
+} catch (fallbackErr) {
+console.error('[menu] Fallback tambem falhou:', fallbackErr?.message || fallbackErr)
+Reply('❌ Erro ao exibir o menu. Tente novamente.')
+}
+}
 }
 break
 case "videotourl": {
